@@ -41,6 +41,12 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
         if (BridgeUtils.validate(config, ReadableType.Number, "selectionShift")) {
             pieDataSet.setSelectionShift((float) config.getDouble("selectionShift"));
         }
+        if (BridgeUtils.validate(config, ReadableType.Boolean, "xValueOuterEnabled")) {
+            pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        }
+        if (BridgeUtils.validate(config, ReadableType.Boolean, "yValueOuterEnabled")) {
+            pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        }
     }
 
     @Override
