@@ -51,13 +51,13 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
             pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLinePart1OffsetPercentage"));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart1Length")) {
-            pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLinePart1Length"));
+            pieDataSet.setValueLinePart1Length((float) config.getDouble("valueLinePart1Length"));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart2Length")) {
-            pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLinePart2Length"));
+            pieDataSet.setValueLinePart2Length((float) config.getDouble("valueLinePart2Length"));
         }
-        if (BridgeUtils.validate(config, ReadableType.Number, "valueLineVariableLength")) {
-            pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLineVariableLength"));
+        if (BridgeUtils.validate(config, ReadableType.Boolean, "valueLineVariableLength")) {
+            pieDataSet.setValueLineVariableLength(config.getBoolean("valueLineVariableLength"));
         }
     }
 
