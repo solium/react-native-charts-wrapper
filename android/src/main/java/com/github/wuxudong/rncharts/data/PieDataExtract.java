@@ -47,11 +47,18 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
         if (BridgeUtils.validate(config, ReadableType.Boolean, "yValueOuterEnabled")) {
             pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         }
-        // TODO: please make this configurable in the future
-        pieDataSet.setValueLinePart1OffsetPercentage(1.0f);
-        pieDataSet.setValueLinePart1Length(0.6f);
-        pieDataSet.setValueLinePart2Length(0.3f);
-        pieDataSet.setValueLineVariableLength(false);
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart1OffsetPercentage")) {
+            pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLinePart1OffsetPercentage"));
+        }
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart1Length")) {
+            pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLinePart1Length"));
+        }
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart2Length")) {
+            pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLinePart2Length"));
+        }
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLineVariableLength")) {
+            pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLineVariableLength"));
+        }
     }
 
     @Override
