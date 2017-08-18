@@ -5,6 +5,7 @@
 import Foundation
 import SwiftyJSON
 import Charts
+import React
 
 class CandleDataExtract : DataExtract {
     override func createData() -> ChartData {
@@ -62,7 +63,6 @@ class CandleDataExtract : DataExtract {
                 candleDataSet.decreasingFilled = true;
             }
         }
-        
         
         if config["increasingPaintStyle"].string != nil {
             if config["increasingPaintStyle"].stringValue.lowercased() == "fill" {

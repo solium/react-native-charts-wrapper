@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import React
 
 @objc(RNRadarChartManager)
 open class RNRadarChartManager: RCTViewManager {

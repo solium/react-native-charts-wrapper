@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import React
 
 @objc(RNBubbleChartManager)
 open class RNBubbleChartManager: RCTViewManager, RNBarLineChartBaseManager {

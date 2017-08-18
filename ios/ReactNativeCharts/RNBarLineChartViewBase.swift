@@ -6,6 +6,7 @@
 import Foundation
 import Charts
 import SwiftyJSON
+import React
 
 class RNBarLineChartViewBase: RNYAxisChartViewBase {
     fileprivate var barLineChart: BarLineChartViewBase {

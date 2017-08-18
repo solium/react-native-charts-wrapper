@@ -1,5 +1,6 @@
 package com.github.wuxudong.rncharts.charts;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import android.graphics.Matrix;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -19,6 +20,10 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
+
+    public BarLineChartBaseManager(ReactApplicationContext reactContext) {
+        super(reactContext);
+    }
 
     @Override
     public void setYAxis(Chart chart, ReadableMap propMap) {

@@ -1,5 +1,6 @@
 package com.github.wuxudong.rncharts.data;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -15,6 +16,12 @@ import java.util.ArrayList;
  */
 
 public abstract class DataExtract<D extends ChartData, U extends Entry> {
+
+    private ReactApplicationContext reactContext;
+
+    public DataExtract(ReactApplicationContext reactContext) {
+        this.reactContext = reactContext;
+    }
 
     public D extract(ReadableMap propMap) {
         if (!BridgeUtils.validate(propMap, ReadableType.Array, "dataSets")) {
@@ -71,6 +78,7 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
 
     abstract U createEntry(ReadableArray values, int index);
 
-
-
+    public ReactApplicationContext getReactContext() {
+        return reactContext;
+    }
 }

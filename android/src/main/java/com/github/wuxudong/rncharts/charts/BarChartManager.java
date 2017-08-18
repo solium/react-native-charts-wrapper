@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.view.View;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.BarChart;
@@ -12,6 +13,10 @@ import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 
 public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry> {
+
+    public BarChartManager(ReactApplicationContext reactContext) {
+        super(reactContext);
+    }
 
     @Override
     public String getName() {
@@ -28,7 +33,7 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
 
     @Override
     DataExtract getDataExtract() {
-        return new BarDataExtract();
+        return new BarDataExtract(getReactContext());
     }
 
     @ReactProp(name = "drawValueAboveBar")
@@ -39,5 +44,10 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
     @ReactProp(name = "drawBarShadow")
     public void setDrawBarShadow(BarChart chart, boolean enabled) {
         chart.setDrawBarShadow(enabled);
+    }
+
+    @ReactProp(name = "highlightFullBarEnabled")
+    public void setHighlightFullBarEnabled(BarChart chart, boolean enabled) {
+        chart.setHighlightFullBarEnabled(enabled);
     }
 }

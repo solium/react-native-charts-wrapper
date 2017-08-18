@@ -1,6 +1,7 @@
 package com.github.wuxudong.rncharts.charts;
 
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.github.mikephil.charting.charts.BubbleChart;
 import com.github.mikephil.charting.data.BubbleEntry;
@@ -10,6 +11,10 @@ import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 
 public class BubbleChartManager extends BarLineChartBaseManager<BubbleChart, BubbleEntry> {
+
+    public BubbleChartManager(ReactApplicationContext reactContext) {
+        super(reactContext);
+    }
 
     @Override
     public String getName() {
@@ -27,6 +32,6 @@ public class BubbleChartManager extends BarLineChartBaseManager<BubbleChart, Bub
 
     @Override
     DataExtract getDataExtract() {
-        return new BubbleDataExtract();
+        return new BubbleDataExtract(getReactContext());
     }
 }

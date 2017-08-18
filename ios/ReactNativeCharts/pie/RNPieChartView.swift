@@ -4,6 +4,7 @@
 
 import Charts
 import SwiftyJSON
+import React
 
 class RNPieChartView: RNChartViewBase {
     let _chart: PieChartView;
@@ -134,8 +135,35 @@ class RNPieChartView: RNChartViewBase {
         chart.rotationEnabled = enabled
     }
 
-    func setRotationAngle(_ angle: NSNumber) {
-        chart.rotationAngle = CGFloat(angle)
+    func setRotationAngle(_ rotationAngle: NSNumber) {
+        chart.rotationAngle = CGFloat(rotationAngle)
+    }
+
+    func setMinOffset(_ minOffset: NSNumber) {
+        chart.minOffset = CGFloat(minOffset)
+    }
+
+    func setSpin(_ spin: NSDictionary) {
+        let config = BridgeUtils.toJson(spin)
+        var duration: Double = 0.0;
+        var fromAngle: CGFloat = 0.0;
+        var toAngle: CGFloat = 0.0;
+        var easing: ChartEasingOption = .linear;
+
+        if let durationNumber = config["durationMilli"].number {
+            duration = Double(durationNumber) / 1000
+        }
+        if let fromAngleNumber = config["fromAngle"].number {
+            fromAngle = CGFloat(fromAngleNumber)
+        }
+        if let toAngleNumber = config["toAngle"].number {
+            toAngle = CGFloat(toAngleNumber)
+        }
+        if let easingString = config["easing"].string {
+            easing = BridgeUtils.parseEasingOption(easingString)
+        }
+
+        chart.spin(duration: duration, fromAngle: fromAngle, toAngle: toAngle, easingOption: easing)
     }
 
     override func didSetProps(_ changedProps: [String]!) {

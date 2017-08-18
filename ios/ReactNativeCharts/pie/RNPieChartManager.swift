@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import React
 
 @objc(RNPieChartManager)
 open class RNPieChartManager: RCTViewManager {

@@ -1,5 +1,8 @@
 package com.github.wuxudong.rncharts.utils;
 
+import android.graphics.Typeface;
+
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.github.mikephil.charting.components.Legend;
@@ -14,6 +17,10 @@ import com.github.wuxudong.rncharts.charts.CustomFormatter;
 import com.github.wuxudong.rncharts.charts.DateFormatter;
 
 import java.util.Locale;
+import com.github.wuxudong.rncharts.charts.DisplayStringFormatter;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * https://github.com/PhilJay/MPAndroidChart/wiki/The-DataSet-class
@@ -21,7 +28,7 @@ import java.util.Locale;
  */
 public class ChartDataSetConfigUtils {
 
-    public static void commonConfig(DataSet dataSet, ReadableMap config) {
+    public static void commonConfig(DataSet dataSet, ReadableMap config, ReactApplicationContext context) {
         // Setting main color
         if (BridgeUtils.validate(config, ReadableType.Number, "color")) {
             dataSet.setColor(config.getInt("color"));
@@ -65,10 +72,19 @@ public class ChartDataSetConfigUtils {
             } else {
                 dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
             }
+        } else if (BridgeUtils.validate(config, ReadableType.Array, "valueFormatter")) {
+            dataSet.setValueFormatter(new DisplayStringFormatter(
+                    dataSet,
+                    Arrays.asList(BridgeUtils.convertToStringArray(config.getArray("valueFormatter")))
+            ));
         }
 
         if (BridgeUtils.validate(config, ReadableType.String, "axisDependency")) {
             dataSet.setAxisDependency(YAxis.AxisDependency.valueOf(config.getString("axisDependency").toUpperCase(Locale.ENGLISH)));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.String, "fontFamilyAndroid")) {
+            dataSet.setValueTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/" + config.getString("fontFamilyAndroid")));
         }
     }
 

@@ -26,23 +26,18 @@ public class MPAndroidChartPackage implements ReactPackage {
         return Arrays.<NativeModule>asList();
     }
 
-    // Deprecated in RN 0.47
-    public List<Class<? extends JavaScriptModule>> createJSModules() {
-        return Collections.emptyList();
-    }
-
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Arrays.<ViewManager>asList(
-                new BarChartManager(),
-                new HorizontalBarChartManager(),
-                new BubbleChartManager(),
-                new CandleStickChartManager(),
-                new LineChartManager(),
-                new PieChartManager(),
-                new RadarChartManager(),
-                new ScatterChartManager(),
-                new CombinedChartManager()
+                new BarChartManager(reactContext),
+                new HorizontalBarChartManager(reactContext),
+                new BubbleChartManager(reactContext),
+                new CandleStickChartManager(reactContext),
+                new LineChartManager(reactContext),
+                new PieChartManager(reactContext),
+                new RadarChartManager(reactContext),
+                new ScatterChartManager(reactContext),
+                new CombinedChartManager(reactContext)
         );
     }
 

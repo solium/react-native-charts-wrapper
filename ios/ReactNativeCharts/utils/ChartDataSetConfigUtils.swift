@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import SwiftyJSON
+import React
 
 
 class ChartDataSetConfigUtils: NSObject {
@@ -67,10 +68,13 @@ class ChartDataSetConfigUtils: NSObject {
         if config["axisDependency"].string != nil {
             dataSet.axisDependency = BridgeUtils.parseAxisDependency(config["axisDependency"].stringValue)
         }
-        
 
+        if let fontFamily = config["fontFamilyIOS"].string {
+            let fontSize = config["valueTextSize"].number ?? 13.0
+            dataSet.valueFont = UIFont(name: fontFamily, size: CGFloat(fontSize))!
+        }
     }
-    
+
     static func commonBarLineScatterCandleBubbleConfig(_ dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {
         if config["highlightColor"].int != nil {
             dataSet.highlightColor = RCTConvert.uiColor(config["highlightColor"].intValue);
