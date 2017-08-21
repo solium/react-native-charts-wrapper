@@ -1,5 +1,6 @@
 package com.github.wuxudong.rncharts.data;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -19,6 +20,12 @@ import java.util.ArrayList;
 
 public class BarDataExtract extends DataExtract<BarData, BarEntry> {
 
+    private ReactApplicationContext m_reactContext;
+
+    public BarDataExtract(ReactApplicationContext reactContext) {
+        super();
+        this.m_reactContext = reactContext;
+    }
 
     @Override
     BarData createData() {
@@ -67,7 +74,7 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
     void dataSetConfig(IDataSet<BarEntry> dataSet, ReadableMap config) {
         BarDataSet barDataSet = (BarDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(barDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(barDataSet, config, m_reactContext);
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(barDataSet, config);
 
         if (BridgeUtils.validate(config, ReadableType.Number, "barShadowColor")) {

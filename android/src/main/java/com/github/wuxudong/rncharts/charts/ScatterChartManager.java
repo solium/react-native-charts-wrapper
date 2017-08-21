@@ -1,6 +1,7 @@
 package com.github.wuxudong.rncharts.charts;
 
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -22,6 +23,13 @@ import java.util.ArrayList;
 
 public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, Entry> {
 
+    private ReactApplicationContext m_reactContext;
+
+    public ScatterChartManager(ReactApplicationContext reactContext) {
+        super();
+        this.m_reactContext = reactContext;
+    }
+
     @Override
     public String getName() {
         return "RNScatterChart";
@@ -37,6 +45,6 @@ public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, E
 
     @Override
     DataExtract getDataExtract() {
-        return new ScatterDataExtract();
+        return new ScatterDataExtract(m_reactContext);
     }
 }

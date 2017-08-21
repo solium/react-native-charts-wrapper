@@ -1,6 +1,7 @@
 package com.github.wuxudong.rncharts.charts;
 
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
@@ -13,6 +14,13 @@ import com.github.wuxudong.rncharts.data.RadarDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
+
+    private ReactApplicationContext m_reactContext;
+
+    public RadarChartManager(ReactApplicationContext reactContext) {
+        super();
+        this.m_reactContext = reactContext;
+    }
 
     @Override
     public String getName() {
@@ -28,7 +36,7 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
     @Override
     DataExtract getDataExtract() {
-        return new RadarDataExtract();
+        return new RadarDataExtract(m_reactContext);
     }
 
     @Override

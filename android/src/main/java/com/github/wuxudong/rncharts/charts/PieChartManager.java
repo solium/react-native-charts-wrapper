@@ -3,6 +3,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.view.View;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.PieChart;
@@ -13,6 +14,13 @@ import com.github.wuxudong.rncharts.data.PieDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
+
+    private ReactApplicationContext m_reactContext;
+
+    public PieChartManager(ReactApplicationContext reactContext) {
+        super();
+        m_reactContext = reactContext;
+    }
 
     @Override
     public String getName() {
@@ -28,7 +36,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
     @Override
     DataExtract getDataExtract() {
-        return new PieDataExtract();
+        return new PieDataExtract(this.m_reactContext);
     }
 
     @ReactProp(name = "drawEntryLabels")

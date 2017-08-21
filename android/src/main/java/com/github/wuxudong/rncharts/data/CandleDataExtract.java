@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.data;
 
 import android.graphics.Paint;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -20,6 +21,14 @@ import java.util.ArrayList;
  */
 
 public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
+
+    private ReactApplicationContext m_reactContext;
+
+    public CandleDataExtract(ReactApplicationContext reactContext) {
+        super();
+        this.m_reactContext = reactContext;
+    }
+
     @Override
     CandleData createData() {
         return new CandleData();
@@ -34,7 +43,7 @@ public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
     void dataSetConfig(IDataSet<CandleEntry> dataSet, ReadableMap config) {
         CandleDataSet candleDataSet = (CandleDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(candleDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(candleDataSet, config, m_reactContext);
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(candleDataSet, config);
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(candleDataSet, config);
 

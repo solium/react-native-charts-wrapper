@@ -1,5 +1,8 @@
 package com.github.wuxudong.rncharts.utils;
 
+import android.graphics.Typeface;
+
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.github.mikephil.charting.components.Legend;
@@ -18,7 +21,7 @@ import com.github.wuxudong.rncharts.charts.CustomFormatter;
  */
 public class ChartDataSetConfigUtils {
 
-    public static void commonConfig(DataSet dataSet, ReadableMap config) {
+    public static void commonConfig(DataSet dataSet, ReadableMap config, ReactApplicationContext context) {
         // Setting main color
         if (BridgeUtils.validate(config, ReadableType.Number, "color")) {
             dataSet.setColor(config.getInt("color"));
@@ -63,6 +66,10 @@ public class ChartDataSetConfigUtils {
 
         if (BridgeUtils.validate(config, ReadableType.String, "axisDependency")) {
             dataSet.setAxisDependency(YAxis.AxisDependency.valueOf(config.getString("axisDependency").toUpperCase()));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.String, "fontFamily")) {
+            dataSet.setValueTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/" + config.getString("fontFamily")));
         }
     }
 
