@@ -6,6 +6,7 @@ import android.view.View;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.PieRadarChartBase;
 import com.github.mikephil.charting.data.PieEntry;
@@ -103,6 +104,8 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     public void setRotationAngle(PieChart chart, float angle) { chart.setRotationAngle(angle); }
 
     @ReactProp(name = "spinAngleDuration")
-    public void setSpinAngleDuraction(PieChart chart, int durationMilli) { chart.spin(durationMilli, chart.getRotationAngle() - 90f, chart.getRotationAngle(), null); }
+    public void setSpinAngleDuraction(PieChart chart, int durationMilli) {
+        chart.spin(durationMilli, chart.getRotationAngle() - 90f, chart.getRotationAngle(), Easing.EasingOption.Linear);
+    }
 
 }
