@@ -102,4 +102,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     @ReactProp(name = "rotationAngle")
     public void setRotationAngle(PieChart chart, float angle) { chart.setRotationAngle(angle); }
 
+    @ReactProp(name = "spinAngleDuration")
+    public void setSpinAngleDuraction(PieChart chart, int durationMilli) { chart.spin(durationMilli, chart.getRotationAngle() - 90f, chart.getRotationAngle(), null); }
+
 }
