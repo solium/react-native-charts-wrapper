@@ -13,7 +13,7 @@ public class CandleStickChartManager extends BarLineChartBaseManager<CandleStick
     private ReactApplicationContext m_reactContext;
 
     public CandleStickChartManager(ReactApplicationContext reactContext) {
-        super();
+        super(reactContext);
         this.m_reactContext = reactContext;
     }
 

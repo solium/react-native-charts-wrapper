@@ -22,7 +22,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     private ReactApplicationContext m_reactContext;
 
     public PieChartManager(ReactApplicationContext reactContext) {
-        super();
+        super(reactContext);
         m_reactContext = reactContext;
     }
 

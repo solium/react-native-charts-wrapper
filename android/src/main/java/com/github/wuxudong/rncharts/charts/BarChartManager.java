@@ -16,7 +16,7 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
     private ReactApplicationContext m_reactContext;
 
     public BarChartManager(ReactApplicationContext reactContext) {
-        super();
+        super(reactContext);
         this.m_reactContext = reactContext;
     }
 

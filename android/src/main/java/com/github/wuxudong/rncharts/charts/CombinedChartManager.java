@@ -17,7 +17,7 @@ public class CombinedChartManager extends BarLineChartBaseManager<CombinedChart,
     private ReactApplicationContext m_reactContext;
 
     public CombinedChartManager(ReactApplicationContext reactContext) {
-        super();
+        super(reactContext);
         this.m_reactContext = reactContext;
     }
 

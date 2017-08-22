@@ -26,7 +26,7 @@ public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, E
     private ReactApplicationContext m_reactContext;
 
     public ScatterChartManager(ReactApplicationContext reactContext) {
-        super();
+        super(reactContext);
         this.m_reactContext = reactContext;
     }
 

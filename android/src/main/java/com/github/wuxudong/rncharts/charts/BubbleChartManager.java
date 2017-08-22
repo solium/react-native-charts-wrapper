@@ -14,7 +14,7 @@ public class BubbleChartManager extends ChartBaseManager<BubbleChart, BubbleEntr
     private ReactApplicationContext m_reactContext;
 
     public BubbleChartManager(ReactApplicationContext reactContext) {
-        super();
+        super(reactContext);
         this.m_reactContext = reactContext;
     }
 

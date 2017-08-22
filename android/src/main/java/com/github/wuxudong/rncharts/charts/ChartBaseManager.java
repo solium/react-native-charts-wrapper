@@ -1,8 +1,10 @@
 package com.github.wuxudong.rncharts.charts;
 
 import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.os.Build;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -30,6 +32,11 @@ import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager {
 
+    private ReactApplicationContext m_reactContext;
+
+    public ChartBaseManager(ReactApplicationContext reactContext) {
+        this.m_reactContext = reactContext;
+    }
 
     abstract DataExtract getDataExtract();
 
@@ -78,6 +85,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
         if (BridgeUtils.validate(propMap, ReadableType.Number, "formToTextSpace")) {
             legend.setFormToTextSpace((float) propMap.getDouble("formToTextSpace"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
+            legend.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamily")));
         }
 
         // Custom labels & colors
@@ -140,6 +151,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         if (BridgeUtils.validate(propMap, ReadableType.Number, "positionX") &&
                 BridgeUtils.validate(propMap, ReadableType.Number, "positionY")) {
             description.setPosition((float) propMap.getDouble("positionX"), (float) propMap.getDouble("positionY"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
+            description.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamily")));
         }
 
         chart.setDescription(description);
@@ -299,6 +314,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             }
 
             axis.enableGridDashedLine(lineLength, spaceLength, phase);
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
+            axis.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamily")));
         }
 
         // limit lines

@@ -14,6 +14,10 @@ import com.github.mikephil.charting.data.LineScatterCandleRadarDataSet;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.charts.CustomFormatter;
+import com.github.wuxudong.rncharts.charts.DisplayStringFormatter;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * https://github.com/PhilJay/MPAndroidChart/wiki/The-DataSet-class
@@ -62,6 +66,11 @@ public class ChartDataSetConfigUtils {
             } else {
                 dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
             }
+        } else if (BridgeUtils.validate(config, ReadableType.Array, "valueFormatter")) {
+            dataSet.setValueFormatter(new DisplayStringFormatter(
+                    dataSet,
+                    Arrays.asList(BridgeUtils.convertToStringArray(config.getArray("valueFormatmagter")))
+            ));
         }
 
         if (BridgeUtils.validate(config, ReadableType.String, "axisDependency")) {

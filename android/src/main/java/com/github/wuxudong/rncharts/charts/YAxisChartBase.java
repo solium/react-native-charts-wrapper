@@ -1,5 +1,6 @@
 package com.github.wuxudong.rncharts.charts;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.annotations.ReactProp;
@@ -9,6 +10,10 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 public abstract class YAxisChartBase<T extends Chart, U extends Entry> extends ChartBaseManager<T, U> {
+
+    public YAxisChartBase(ReactApplicationContext reactContext) {
+        super(reactContext);
+    }
 
     /**
      * yAxis config details: https://github.com/PhilJay/MPAndroidChart/wiki/YAxis

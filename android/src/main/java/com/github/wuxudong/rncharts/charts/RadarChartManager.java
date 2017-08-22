@@ -18,7 +18,7 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
     private ReactApplicationContext m_reactContext;
 
     public RadarChartManager(ReactApplicationContext reactContext) {
-        super();
+        super(reactContext);
         this.m_reactContext = reactContext;
     }
 

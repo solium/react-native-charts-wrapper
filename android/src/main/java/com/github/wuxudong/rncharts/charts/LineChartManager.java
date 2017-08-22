@@ -14,7 +14,7 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
     private ReactApplicationContext m_reactContext;
 
     public LineChartManager(ReactApplicationContext reactContext) {
-        super();
+        super(reactContext);
         this.m_reactContext = reactContext;
     }
 
