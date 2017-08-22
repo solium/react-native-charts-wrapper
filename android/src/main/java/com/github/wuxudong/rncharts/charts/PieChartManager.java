@@ -4,6 +4,8 @@ package com.github.wuxudong.rncharts.charts;
 import android.view.View;
 
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.animation.Easing;
@@ -13,6 +15,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.PieDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
+import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
@@ -103,9 +106,24 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     @ReactProp(name = "rotationAngle")
     public void setRotationAngle(PieChart chart, float angle) { chart.setRotationAngle(angle); }
 
-    @ReactProp(name = "spinAngleDuration")
-    public void setSpinAngleDuraction(PieChart chart, int durationMilli) {
-        chart.spin(durationMilli, chart.getRotationAngle() - 90f, chart.getRotationAngle(), Easing.EasingOption.Linear);
+    @ReactProp(name = "spin")
+    public void setSpinAngleDuraction(PieChart chart, ReadableMap propMap) {
+        int durationMilli = 0;
+        float fromAngle = 0f;
+        float toAngle = 0f;
+        Easing.EasingOption easing = Easing.EasingOption.Linear;
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "durationMilli")) {
+            durationMilli = propMap.getInt("durationMilli");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "fromAngle")) {
+            fromAngle = (float) propMap.getDouble("fromAngle");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "toAngle")) {
+            toAngle = (float) propMap.getDouble("toAngle");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "easing")) {
+            easing = Easing.EasingOption.valueOf(propMap.getString("easing"));
+        }
+        chart.spin(durationMilli, fromAngle, toAngle, easing);
     }
-
 }
