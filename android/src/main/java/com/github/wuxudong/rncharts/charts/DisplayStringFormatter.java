@@ -22,6 +22,7 @@ public class DisplayStringFormatter implements IValueFormatter {
 
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+        // dataSetIndex always comes back as zero, so I use the entry index to find what display string belongs to what dataset
         return mdisplayValues.get(mdataSet.getEntryIndex(entry));
     }
 }
