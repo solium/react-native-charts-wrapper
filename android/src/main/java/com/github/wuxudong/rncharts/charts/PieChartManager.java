@@ -128,7 +128,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
         chart.spin(durationMilli, fromAngle, toAngle, easing);
     }
 
-    @ReactProp(name = "minOffSet")
+    @ReactProp(name = "minOffset")
     public void setMinOffSet(PieChart chart, float offset) {
         chart.setMinOffset(offset);
     }

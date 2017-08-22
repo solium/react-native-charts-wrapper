@@ -401,5 +401,22 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         chart.invalidate();
     }
 
-
+    @ReactProp(name = "extraOffsets")
+    public void setExtraOffsets(Chart chart, ReadableMap propMap) {
+        float left, right, top, bottom;
+        left = right = top = bottom = 0f;
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "left")) {
+            left = (float) propMap.getDouble("left");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "right")) {
+            right = (float) propMap.getDouble("right");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "top")) {
+            top = (float) propMap.getDouble("top");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "bottom")) {
+            bottom = (float) propMap.getDouble("bottom");
+        }
+        chart.setExtraOffsets(left, top, right, bottom);
+    }
 }
