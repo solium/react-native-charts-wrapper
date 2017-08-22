@@ -69,7 +69,7 @@ public class ChartDataSetConfigUtils {
         } else if (BridgeUtils.validate(config, ReadableType.Array, "valueFormatter")) {
             dataSet.setValueFormatter(new DisplayStringFormatter(
                     dataSet,
-                    Arrays.asList(BridgeUtils.convertToStringArray(config.getArray("valueFormatmagter")))
+                    Arrays.asList(BridgeUtils.convertToStringArray(config.getArray("valueFormatter")))
             ));
         }
 

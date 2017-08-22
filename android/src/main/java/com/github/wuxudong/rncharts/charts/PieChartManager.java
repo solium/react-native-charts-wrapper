@@ -51,6 +51,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     @ReactProp(name = "usePercentValues")
     public void setUsePercentValues(PieChart chart, boolean enabled) {
         chart.setUsePercentValues(enabled);
+
     }
 
     @ReactProp(name = "centerText")
@@ -125,5 +126,10 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
             easing = Easing.EasingOption.valueOf(propMap.getString("easing"));
         }
         chart.spin(durationMilli, fromAngle, toAngle, easing);
+    }
+
+    @ReactProp(name = "minOffSet")
+    public void setMinOffSet(PieChart chart, float offset) {
+        chart.setMinOffset(offset);
     }
 }
