@@ -15,11 +15,8 @@ import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public RadarChartManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.m_reactContext = reactContext;
     }
 
     @Override
@@ -36,7 +33,7 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
     @Override
     DataExtract getDataExtract() {
-        return new RadarDataExtract(m_reactContext);
+        return new RadarDataExtract(getReactContext());
     }
 
     @Override

@@ -19,11 +19,8 @@ import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public PieChartManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        m_reactContext = reactContext;
     }
 
     @Override
@@ -40,7 +37,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
     @Override
     DataExtract getDataExtract() {
-        return new PieDataExtract(this.m_reactContext);
+        return new PieDataExtract(getReactContext());
     }
 
     @ReactProp(name = "drawEntryLabels")

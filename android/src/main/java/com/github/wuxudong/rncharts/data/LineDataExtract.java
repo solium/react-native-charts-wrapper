@@ -20,11 +20,8 @@ import java.util.ArrayList;
 
 public class LineDataExtract extends DataExtract<LineData, Entry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public LineDataExtract(ReactApplicationContext reactContext) {
-        super();
-        this.m_reactContext = reactContext;
+        super(reactContext);
     }
 
     @Override
@@ -42,7 +39,7 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
     void dataSetConfig(IDataSet<Entry> dataSet, ReadableMap config) {
         LineDataSet lineDataSet = (LineDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(lineDataSet, config, m_reactContext);
+        ChartDataSetConfigUtils.commonConfig(lineDataSet, config, getReactContext());
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(lineDataSet, config);
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(lineDataSet, config);
         ChartDataSetConfigUtils.commonLineRadarConfig(lineDataSet, config);

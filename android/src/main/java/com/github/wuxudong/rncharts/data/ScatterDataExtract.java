@@ -21,11 +21,8 @@ import java.util.ArrayList;
 
 public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public ScatterDataExtract(ReactApplicationContext reactContext) {
-        super();
-        this.m_reactContext = reactContext;
+        super(reactContext);
     }
 
     @Override
@@ -42,7 +39,7 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
     void dataSetConfig(IDataSet<Entry> dataSet, ReadableMap config) {
         ScatterDataSet scatterDataSet = (ScatterDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(scatterDataSet, config, m_reactContext);
+        ChartDataSetConfigUtils.commonConfig(scatterDataSet, config, getReactContext());
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(scatterDataSet, config);
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(scatterDataSet, config);
 

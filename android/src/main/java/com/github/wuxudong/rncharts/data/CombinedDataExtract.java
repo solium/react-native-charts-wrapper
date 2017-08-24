@@ -18,7 +18,6 @@ import java.util.ArrayList;
  */
 
 public class CombinedDataExtract extends DataExtract<CombinedData, Entry> {
-    private ReactApplicationContext m_reactContext;
     private LineDataExtract lineDataExtract;
     private BarDataExtract barDataExtract;
     private ScatterDataExtract scatterDataExtract;
@@ -27,13 +26,12 @@ public class CombinedDataExtract extends DataExtract<CombinedData, Entry> {
 
 
     public CombinedDataExtract(ReactApplicationContext reactContext) {
-        super();
-        this.m_reactContext = reactContext;
-        lineDataExtract = new LineDataExtract(m_reactContext);
-        barDataExtract = new BarDataExtract(m_reactContext);
-        scatterDataExtract = new ScatterDataExtract(m_reactContext);
-        candleDataExtract = new CandleDataExtract(m_reactContext);
-        bubbleDataExtract = new BubbleDataExtract(m_reactContext);
+        super(reactContext);
+        lineDataExtract = new LineDataExtract(reactContext);
+        barDataExtract = new BarDataExtract(reactContext);
+        scatterDataExtract = new ScatterDataExtract(reactContext);
+        candleDataExtract = new CandleDataExtract(reactContext);
+        bubbleDataExtract = new BubbleDataExtract(reactContext);
     }
 
     @Override

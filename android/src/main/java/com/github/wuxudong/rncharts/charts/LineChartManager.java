@@ -11,11 +11,8 @@ import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public LineChartManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.m_reactContext = reactContext;
     }
 
     @Override
@@ -32,6 +29,6 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
 
     @Override
     DataExtract getDataExtract() {
-        return new LineDataExtract(m_reactContext);
+        return new LineDataExtract(getReactContext());
     }
 }

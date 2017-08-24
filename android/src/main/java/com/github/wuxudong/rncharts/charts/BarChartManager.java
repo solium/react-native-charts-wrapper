@@ -13,11 +13,8 @@ import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public BarChartManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.m_reactContext = reactContext;
     }
 
     @Override
@@ -34,7 +31,7 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
 
     @Override
     DataExtract getDataExtract() {
-        return new BarDataExtract(m_reactContext);
+        return new BarDataExtract(getReactContext());
     }
 
     @ReactProp(name = "drawValueAboveBar")

@@ -19,11 +19,8 @@ import java.util.ArrayList;
 
 public class RadarDataExtract extends DataExtract<RadarData, RadarEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public RadarDataExtract(ReactApplicationContext reactContext) {
-        super();
-        this.m_reactContext = reactContext;
+        super(reactContext);
     }
 
     @Override
@@ -40,7 +37,7 @@ public class RadarDataExtract extends DataExtract<RadarData, RadarEntry> {
     void dataSetConfig(IDataSet<RadarEntry> dataSet, ReadableMap config) {
         RadarDataSet radarDataSet = (RadarDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(radarDataSet, config, m_reactContext);
+        ChartDataSetConfigUtils.commonConfig(radarDataSet, config, getReactContext());
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(radarDataSet, config);
         ChartDataSetConfigUtils.commonLineRadarConfig(radarDataSet, config);
 

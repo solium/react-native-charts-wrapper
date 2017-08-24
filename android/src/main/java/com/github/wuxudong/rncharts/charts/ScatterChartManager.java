@@ -23,11 +23,8 @@ import java.util.ArrayList;
 
 public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, Entry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public ScatterChartManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.m_reactContext = reactContext;
     }
 
     @Override
@@ -45,6 +42,6 @@ public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, E
 
     @Override
     DataExtract getDataExtract() {
-        return new ScatterDataExtract(m_reactContext);
+        return new ScatterDataExtract(getReactContext());
     }
 }

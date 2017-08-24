@@ -22,11 +22,8 @@ import java.util.ArrayList;
 
 public class PieDataExtract extends DataExtract<PieData, PieEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public PieDataExtract(ReactApplicationContext reactContext) {
-        super();
-        this.m_reactContext = reactContext;
+        super(reactContext);
     }
 
     @Override
@@ -43,7 +40,7 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
     void dataSetConfig(IDataSet<PieEntry> dataSet, ReadableMap config) {
         PieDataSet pieDataSet = (PieDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(pieDataSet, config, this.m_reactContext);
+        ChartDataSetConfigUtils.commonConfig(pieDataSet, config, getReactContext());
 
         // PieDataSet only config
         if (BridgeUtils.validate(config, ReadableType.Number, "sliceSpace")) {

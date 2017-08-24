@@ -14,11 +14,8 @@ import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class CombinedChartManager extends BarLineChartBaseManager<CombinedChart, Entry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public CombinedChartManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.m_reactContext = reactContext;
     }
 
     @Override
@@ -35,6 +32,6 @@ public class CombinedChartManager extends BarLineChartBaseManager<CombinedChart,
 
     @Override
     DataExtract getDataExtract() {
-        return new CombinedDataExtract(m_reactContext);
+        return new CombinedDataExtract(getReactContext());
     }
 }

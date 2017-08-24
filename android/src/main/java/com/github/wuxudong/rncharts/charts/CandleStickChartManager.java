@@ -10,11 +10,8 @@ import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class CandleStickChartManager extends BarLineChartBaseManager<CandleStickChart, CandleEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public CandleStickChartManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.m_reactContext = reactContext;
     }
 
     @Override
@@ -32,6 +29,6 @@ public class CandleStickChartManager extends BarLineChartBaseManager<CandleStick
 
     @Override
     DataExtract getDataExtract() {
-        return new CandleDataExtract(m_reactContext);
+        return new CandleDataExtract(getReactContext());
     }
 }

@@ -20,11 +20,8 @@ import java.util.ArrayList;
 
 public class BarDataExtract extends DataExtract<BarData, BarEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public BarDataExtract(ReactApplicationContext reactContext) {
-        super();
-        this.m_reactContext = reactContext;
+        super(reactContext);
     }
 
     @Override
@@ -74,7 +71,7 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
     void dataSetConfig(IDataSet<BarEntry> dataSet, ReadableMap config) {
         BarDataSet barDataSet = (BarDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(barDataSet, config, m_reactContext);
+        ChartDataSetConfigUtils.commonConfig(barDataSet, config, getReactContext());
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(barDataSet, config);
 
         if (BridgeUtils.validate(config, ReadableType.Number, "barShadowColor")) {

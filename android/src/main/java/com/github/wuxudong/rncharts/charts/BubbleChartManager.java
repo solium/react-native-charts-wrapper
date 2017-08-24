@@ -11,11 +11,8 @@ import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class BubbleChartManager extends ChartBaseManager<BubbleChart, BubbleEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public BubbleChartManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.m_reactContext = reactContext;
     }
 
     @Override
@@ -33,6 +30,6 @@ public class BubbleChartManager extends ChartBaseManager<BubbleChart, BubbleEntr
 
     @Override
     DataExtract getDataExtract() {
-        return new BubbleDataExtract(m_reactContext);
+        return new BubbleDataExtract(getReactContext());
     }
 }

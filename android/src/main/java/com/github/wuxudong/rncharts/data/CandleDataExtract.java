@@ -22,11 +22,8 @@ import java.util.ArrayList;
 
 public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public CandleDataExtract(ReactApplicationContext reactContext) {
-        super();
-        this.m_reactContext = reactContext;
+        super(reactContext);
     }
 
     @Override
@@ -43,7 +40,7 @@ public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
     void dataSetConfig(IDataSet<CandleEntry> dataSet, ReadableMap config) {
         CandleDataSet candleDataSet = (CandleDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(candleDataSet, config, m_reactContext);
+        ChartDataSetConfigUtils.commonConfig(candleDataSet, config, getReactContext());
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(candleDataSet, config);
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(candleDataSet, config);
 

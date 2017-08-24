@@ -20,11 +20,8 @@ import java.util.ArrayList;
 
 public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
 
-    private ReactApplicationContext m_reactContext;
-
     public BubbleDataExtract(ReactApplicationContext reactContext) {
-        super();
-        this.m_reactContext = reactContext;
+        super(reactContext);
     }
 
     @Override
@@ -42,7 +39,7 @@ public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
     void dataSetConfig(IDataSet<BubbleEntry> dataSet, ReadableMap config) {
         BubbleDataSet bubbleDataSet = (BubbleDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(bubbleDataSet, config, this.m_reactContext);
+        ChartDataSetConfigUtils.commonConfig(bubbleDataSet, config, getReactContext());
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(bubbleDataSet, config);
 
         // BubbleDataSet only config

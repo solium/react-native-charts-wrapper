@@ -400,4 +400,8 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         chart.setData(getDataExtract().extract(propMap));
         chart.invalidate();
     }
+
+    public ReactApplicationContext getReactContext() {
+        return m_reactContext;
+    }
 }
