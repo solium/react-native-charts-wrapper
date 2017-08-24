@@ -5,6 +5,7 @@
 import Foundation
 import SwiftyJSON
 import Charts
+import React
 
 class CandleDataExtract : DataExtract {
     override func createData() -> ChartData {

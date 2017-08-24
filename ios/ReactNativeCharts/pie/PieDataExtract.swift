@@ -29,7 +29,35 @@ class PieDataExtract : DataExtract {
         if config["selectionShift"].number != nil {
             pieDataSet.selectionShift = CGFloat(config["selectionShift"].numberValue)
         }
-        
+
+        if config["xValuePosition"].string != nil {
+            pieDataSet.xValuePosition = BridgeUtils.parseValuePositionPieDataSet(config["xValuePosition"].stringValue)
+        }
+
+        if config["yValuePosition"].string != nil {
+            pieDataSet.yValuePosition = BridgeUtils.parseValuePositionPieDataSet(config["yValuePosition"].stringValue)
+        }
+
+        if config["valueLinePart1OffsetPercentage"].number != nil {
+            pieDataSet.valueLinePart1OffsetPercentage = CGFloat(config["valueLinePart1OffsetPercentage"].numberValue) / 100
+        }
+
+        if config["valueLinePart1Length"].number != nil {
+            pieDataSet.valueLinePart1Length = CGFloat(config["valueLinePart1Length"].numberValue)
+        }
+
+        if config["valueLinePart2Length"].number != nil {
+            pieDataSet.valueLinePart2Length = CGFloat(config["valueLinePart2Length"].numberValue)
+        }
+
+        if config["valueLineVariableLength"].bool != nil {
+            pieDataSet.valueLineVariableLength = config["valueLineVariableLength"].boolValue
+        }
+
+        if config["fontFamily"].string != nil {
+            pieDataSet.entryLabelFont = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
+        }
+
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {

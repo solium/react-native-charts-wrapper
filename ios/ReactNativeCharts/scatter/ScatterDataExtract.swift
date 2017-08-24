@@ -10,6 +10,7 @@ import Foundation
 
 import SwiftyJSON
 import Charts
+import React
 
 class ScatterDataExtract : DataExtract {
     override func createData() -> ChartData {

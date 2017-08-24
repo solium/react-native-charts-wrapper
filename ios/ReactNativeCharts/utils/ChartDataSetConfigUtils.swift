@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import SwiftyJSON
+import React
 
 
 class ChartDataSetConfigUtils: NSObject {
@@ -63,8 +64,6 @@ class ChartDataSetConfigUtils: NSObject {
         if config["axisDependency"].string != nil {
             dataSet.axisDependency = BridgeUtils.parseAxisDependency(config["axisDependency"].stringValue)
         }
-        
-
     }
     
     static func commonBarLineScatterCandleBubbleConfig(_ dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {

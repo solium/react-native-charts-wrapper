@@ -4,6 +4,7 @@
 
 import Charts
 import SwiftyJSON
+import React
 
 class RNPieChartView: RNChartViewBase {
     let _chart: PieChartView;
@@ -87,7 +88,38 @@ class RNPieChartView: RNChartViewBase {
     func setRotationEnabled(_ enabled: Bool) {
         chart.rotationEnabled = enabled
     }
-  
+
+    func setRotationAngle(_ rotationAngle: NSNumber) {
+        chart.rotationAngle = CGFloat(rotationAngle)
+    }
+
+    func setMinOffset(_ minOffset: NSNumber) {
+        chart.minOffset = CGFloat(minOffset)
+    }
+
+    func setSpin(_ spin: NSDictionary) {
+        let config = BridgeUtils.toJson(spin)
+        var duration: Double = 0.0;
+        var fromAngle: CGFloat = 0.0;
+        var toAngle: CGFloat = 0.0;
+        var easing: ChartEasingOption = .linear;
+
+        if config["durationMilli"].number != nil {
+            duration = Double(config["durationMilli"].numberValue) / 1000
+        }
+        if config["fromAngle"].number != nil {
+            fromAngle = CGFloat(config["fromAngle"].numberValue)
+        }
+        if config["toAngle"].number != nil {
+            toAngle = CGFloat(config["toAngle"].numberValue)
+        }
+        if config["easing"].string != nil {
+            easing = BridgeUtils.parseEasingOption(config["easing"].stringValue)
+        }
+
+        chart.spin(duration: duration, fromAngle: fromAngle, toAngle: toAngle, easingOption: easing)
+    }
+
     override func didSetProps(_ changedProps: [String]!) {
         let pieChartDataSet = chart.data?.dataSets[0] as? PieChartDataSet
     
