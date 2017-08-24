@@ -104,17 +104,17 @@ class RNPieChartView: RNChartViewBase {
         var toAngle: CGFloat = 0.0;
         var easing: ChartEasingOption = .linear;
 
-        if config["durationMilli"].number != nil {
-            duration = Double(config["durationMilli"].numberValue) / 1000
+        if let durationNumber = config["durationMilli"].number {
+            duration = Double(durationNumber) / 1000
         }
-        if config["fromAngle"].number != nil {
-            fromAngle = CGFloat(config["fromAngle"].numberValue)
+        if let fromAngleNumber = config["fromAngle"].number {
+            fromAngle = CGFloat(fromAngleNumber)
         }
-        if config["toAngle"].number != nil {
-            toAngle = CGFloat(config["toAngle"].numberValue)
+        if let toAngleNumber = config["toAngle"].number {
+            toAngle = CGFloat(toAngleNumber)
         }
-        if config["easing"].string != nil {
-            easing = BridgeUtils.parseEasingOption(config["easing"].stringValue)
+        if let easingString = config["easing"].string {
+            easing = BridgeUtils.parseEasingOption(easingString)
         }
 
         chart.spin(duration: duration, fromAngle: fromAngle, toAngle: toAngle, easingOption: easing)
