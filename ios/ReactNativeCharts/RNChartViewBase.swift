@@ -107,6 +107,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         
         // TODO extra
 
+        if json["fontFamilyIOS"].string != nil {
+            legend.font = UIFont(name: json["fontFamilyIOS"].stringValue, size: json["textSize"].number != nil ? CGFloat(json["textSize"].numberValue) : CGFloat(13.0))!
+        }
+
     }
     
     func setChartBackgroundColor(_ backgroundColor: Int) {
@@ -134,7 +138,11 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if json["positionX"].number != nil && json["positionY"].number != nil {
             chartDescription.position = CGPoint(x: CGFloat(json["positionX"].numberValue), y: CGFloat(json["positionY"].numberValue))
         }
-        
+
+        if json["fontFamilyIOS"].string != nil {
+            chartDescription.font = UIFont(name: json["fontFamilyIOS"].stringValue, size: json["textSize"].number != nil ? CGFloat(json["textSize"].numberValue) : CGFloat(13.0))!
+        }
+
         chart.chartDescription = chartDescription
     }
     
@@ -346,8 +354,12 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if config["centerAxisLabels"].bool != nil {
             axis.centerAxisLabelsEnabled = config["centerAxisLabels"].boolValue
         }
+
+        if config["fontFamilyIOS"].string != nil {
+            axis.labelFont = UIFont(name: config["fontFamilyIOS"].stringValue, size: config["textSize"].number != nil ? CGFloat(config["textSize"].numberValue) : CGFloat(13.0))!
+        }
     }
-    
+
     func setMarker(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
         

@@ -64,8 +64,12 @@ class ChartDataSetConfigUtils: NSObject {
         if config["axisDependency"].string != nil {
             dataSet.axisDependency = BridgeUtils.parseAxisDependency(config["axisDependency"].stringValue)
         }
+
+        if config["fontFamilyIOS"].string != nil {
+            dataSet.valueFont = UIFont(name: config["fontFamilyIOS"].stringValue, size: config["valueTextSize"].number != nil ? CGFloat(config["valueTextSize"].numberValue) : CGFloat(13.0))!
+        }
     }
-    
+
     static func commonBarLineScatterCandleBubbleConfig(_ dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {
         if config["highlightColor"].int != nil {
             dataSet.highlightColor = RCTConvert.uiColor(config["highlightColor"].intValue);

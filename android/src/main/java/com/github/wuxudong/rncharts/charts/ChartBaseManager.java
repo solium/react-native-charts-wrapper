@@ -87,8 +87,8 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             legend.setFormToTextSpace((float) propMap.getDouble("formToTextSpace"));
         }
 
-        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
-            legend.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamily")));
+        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamilyAndroid")) {
+            legend.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamilyAndroid")));
         }
 
         // Custom labels & colors
@@ -153,8 +153,8 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             description.setPosition((float) propMap.getDouble("positionX"), (float) propMap.getDouble("positionY"));
         }
 
-        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
-            description.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamily")));
+        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamilyAndroid")) {
+            description.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamilyAndroid")));
         }
 
         chart.setDescription(description);
@@ -316,8 +316,8 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             axis.enableGridDashedLine(lineLength, spaceLength, phase);
         }
 
-        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
-            axis.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamily")));
+        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamilyAndroid")) {
+            axis.setTypeface(Typeface.createFromAsset(m_reactContext.getAssets(), "fonts/" + propMap.getString("fontFamilyAndroid")));
         }
 
         // limit lines

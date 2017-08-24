@@ -54,10 +54,6 @@ class PieDataExtract : DataExtract {
             pieDataSet.valueLineVariableLength = config["valueLineVariableLength"].boolValue
         }
 
-        if config["fontFamily"].string != nil {
-            pieDataSet.entryLabelFont = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
-        }
-
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {

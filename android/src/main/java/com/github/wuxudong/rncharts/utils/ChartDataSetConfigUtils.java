@@ -77,8 +77,8 @@ public class ChartDataSetConfigUtils {
             dataSet.setAxisDependency(YAxis.AxisDependency.valueOf(config.getString("axisDependency").toUpperCase()));
         }
 
-        if (BridgeUtils.validate(config, ReadableType.String, "fontFamily")) {
-            dataSet.setValueTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/" + config.getString("fontFamily")));
+        if (BridgeUtils.validate(config, ReadableType.String, "fontFamilyAndroid")) {
+            dataSet.setValueTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/" + config.getString("fontFamilyAndroid")));
         }
     }
 

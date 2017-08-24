@@ -64,7 +64,6 @@ class CandleDataExtract : DataExtract {
             }
         }
         
-        
         if config["increasingPaintStyle"].string != nil {
             if config["increasingPaintStyle"].stringValue.lowercased() == "fill" {
                 candleDataSet.increasingFilled = true;
