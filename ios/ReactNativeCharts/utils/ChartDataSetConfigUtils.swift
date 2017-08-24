@@ -65,8 +65,9 @@ class ChartDataSetConfigUtils: NSObject {
             dataSet.axisDependency = BridgeUtils.parseAxisDependency(config["axisDependency"].stringValue)
         }
 
-        if config["fontFamilyIOS"].string != nil {
-            dataSet.valueFont = UIFont(name: config["fontFamilyIOS"].stringValue, size: config["valueTextSize"].number != nil ? CGFloat(config["valueTextSize"].numberValue) : CGFloat(13.0))!
+        if let fontFamily = config["fontFamilyIOS"].string {
+            let fontSize = config["valueTextSize"].number ?? 13.0
+            dataSet.valueFont = UIFont(name: fontFamily, size: CGFloat(fontSize))!
         }
     }
 

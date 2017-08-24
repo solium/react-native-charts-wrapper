@@ -30,28 +30,28 @@ class PieDataExtract : DataExtract {
             pieDataSet.selectionShift = CGFloat(config["selectionShift"].numberValue)
         }
 
-        if config["xValuePosition"].string != nil {
-            pieDataSet.xValuePosition = BridgeUtils.parseValuePositionPieDataSet(config["xValuePosition"].stringValue)
+        if let xValuePosition = config["xValuePosition"].string {
+            pieDataSet.xValuePosition = BridgeUtils.parseValuePositionPieDataSet(xValuePosition)
         }
 
-        if config["yValuePosition"].string != nil {
-            pieDataSet.yValuePosition = BridgeUtils.parseValuePositionPieDataSet(config["yValuePosition"].stringValue)
+        if let yValuePosition = config["yValuePosition"].string {
+            pieDataSet.yValuePosition = BridgeUtils.parseValuePositionPieDataSet(yValuePosition)
         }
 
-        if config["valueLinePart1OffsetPercentage"].number != nil {
-            pieDataSet.valueLinePart1OffsetPercentage = CGFloat(config["valueLinePart1OffsetPercentage"].numberValue) / 100
+        if let valueLinePart1OffsetPercentage = config["valueLinePart1OffsetPercentage"].number {
+            pieDataSet.valueLinePart1OffsetPercentage = CGFloat(valueLinePart1OffsetPercentage) / 100
         }
 
-        if config["valueLinePart1Length"].number != nil {
-            pieDataSet.valueLinePart1Length = CGFloat(config["valueLinePart1Length"].numberValue)
+        if let valueLinePart1Length = config["valueLinePart1Length"].number {
+            pieDataSet.valueLinePart1Length = CGFloat(valueLinePart1Length)
         }
 
-        if config["valueLinePart2Length"].number != nil {
-            pieDataSet.valueLinePart2Length = CGFloat(config["valueLinePart2Length"].numberValue)
+        if let valueLinePart2Length = config["valueLinePart2Length"].number {
+            pieDataSet.valueLinePart2Length = CGFloat(valueLinePart2Length)
         }
 
-        if config["valueLineVariableLength"].bool != nil {
-            pieDataSet.valueLineVariableLength = config["valueLineVariableLength"].boolValue
+        if let valueLineVariableLength = config["valueLineVariableLength"].bool {
+            pieDataSet.valueLineVariableLength = valueLineVariableLength
         }
 
     }

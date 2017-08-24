@@ -105,10 +105,9 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             }
         }
         
-        // TODO extra
-
-        if json["fontFamilyIOS"].string != nil {
-            legend.font = UIFont(name: json["fontFamilyIOS"].stringValue, size: json["textSize"].number != nil ? CGFloat(json["textSize"].numberValue) : CGFloat(13.0))!
+        if let fontFamily = json["fontFamilyIOS"].string {
+            let fontSize = json["textSize"].number ?? 13.0
+            legend.font = UIFont(name: fontFamily, size: CGFloat(fontSize))!
         }
 
     }
@@ -139,8 +138,9 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             chartDescription.position = CGPoint(x: CGFloat(json["positionX"].numberValue), y: CGFloat(json["positionY"].numberValue))
         }
 
-        if json["fontFamilyIOS"].string != nil {
-            chartDescription.font = UIFont(name: json["fontFamilyIOS"].stringValue, size: json["textSize"].number != nil ? CGFloat(json["textSize"].numberValue) : CGFloat(13.0))!
+        if let fontFamily = json["fontFamilyIOS"].string {
+            let fontSize = json["textSize"].number ?? 13.0
+            chartDescription.font = UIFont(name: fontFamily, size: CGFloat(fontSize))!
         }
 
         chart.chartDescription = chartDescription
@@ -355,8 +355,9 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             axis.centerAxisLabelsEnabled = config["centerAxisLabels"].boolValue
         }
 
-        if config["fontFamilyIOS"].string != nil {
-            axis.labelFont = UIFont(name: config["fontFamilyIOS"].stringValue, size: config["textSize"].number != nil ? CGFloat(config["textSize"].numberValue) : CGFloat(13.0))!
+        if let fontFamily = config["fontFamilyIOS"].string {
+            let fontSize = config["textSize"].number ?? 13.0
+            axis.labelFont = UIFont(name: fontFamily, size: CGFloat(fontSize))!
         }
     }
 
