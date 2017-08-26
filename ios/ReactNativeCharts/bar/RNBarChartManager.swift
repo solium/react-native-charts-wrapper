@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import React
 
 @objc(RNBarChartManager)
 open class RNBarChartManager: RCTViewManager {

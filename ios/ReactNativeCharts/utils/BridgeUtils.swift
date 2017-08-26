@@ -6,6 +6,7 @@
 import Foundation
 import SwiftyJSON
 import Charts
+import React
 
 class BridgeUtils {
     static func toIOSAlpha(_ alpha: NSNumber) -> CGFloat {
@@ -238,6 +239,19 @@ class BridgeUtils {
             return .left
         }
 
+    }
+
+    static func parseValuePositionPieDataSet(_ option: String) -> PieChartDataSet.ValuePosition {
+        let iosEnumString = androidEnumToIOSEnum(option)
+
+        switch iosEnumString {
+        case "outsideSlice":
+            return .outsideSlice
+        case "insideSlice":
+            return .insideSlice
+        default:
+            return .insideSlice
+        }
     }
         
     static func androidEnumToIOSEnum(_ desc: String) -> String {

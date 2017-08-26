@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import SwiftyJSON
+import React
 
 // In react native, because object-c is unaware of swift protocol extension. use baseClass as workaround
 
@@ -104,8 +105,11 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             }
         }
         
-        // TODO extra
-        
+        if let fontFamily = json["fontFamilyIOS"].string {
+            let fontSize = json["textSize"].number ?? 13.0
+            legend.font = UIFont(name: fontFamily, size: CGFloat(fontSize))!
+        }
+
     }
     
     func setChartBackgroundColor(_ backgroundColor: Int) {
@@ -133,7 +137,12 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if json["positionX"].number != nil && json["positionY"].number != nil {
             chartDescription.position = CGPoint(x: CGFloat(json["positionX"].numberValue), y: CGFloat(json["positionY"].numberValue))
         }
-        
+
+        if let fontFamily = json["fontFamilyIOS"].string {
+            let fontSize = json["textSize"].number ?? 13.0
+            chartDescription.font = UIFont(name: fontFamily, size: CGFloat(fontSize))!
+        }
+
         chart.chartDescription = chartDescription
     }
     
@@ -345,8 +354,13 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if config["centerAxisLabels"].bool != nil {
             axis.centerAxisLabelsEnabled = config["centerAxisLabels"].boolValue
         }
+
+        if let fontFamily = config["fontFamilyIOS"].string {
+            let fontSize = config["textSize"].number ?? 13.0
+            axis.labelFont = UIFont(name: fontFamily, size: CGFloat(fontSize))!
+        }
     }
-    
+
     func setMarker(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
         

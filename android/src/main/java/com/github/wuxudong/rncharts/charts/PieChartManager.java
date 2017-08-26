@@ -3,16 +3,25 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.view.View;
 
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.PieRadarChartBase;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.PieDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
+import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
+
+    public PieChartManager(ReactApplicationContext reactContext) {
+        super(reactContext);
+    }
 
     @Override
     public String getName() {
@@ -28,7 +37,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
     @Override
     DataExtract getDataExtract() {
-        return new PieDataExtract();
+        return new PieDataExtract(getReactContext());
     }
 
     @ReactProp(name = "drawEntryLabels")
@@ -39,6 +48,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     @ReactProp(name = "usePercentValues")
     public void setUsePercentValues(PieChart chart, boolean enabled) {
         chart.setUsePercentValues(enabled);
+
     }
 
     @ReactProp(name = "centerText")
@@ -91,5 +101,32 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
         chart.setRotationEnabled(enabled);
     }
 
+    @ReactProp(name = "rotationAngle")
+    public void setRotationAngle(PieChart chart, float angle) { chart.setRotationAngle(angle); }
 
+    @ReactProp(name = "spin")
+    public void setSpinAngleDuraction(PieChart chart, ReadableMap propMap) {
+        int durationMilli = 0;
+        float fromAngle = 0f;
+        float toAngle = 0f;
+        Easing.EasingOption easing = Easing.EasingOption.Linear;
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "durationMilli")) {
+            durationMilli = propMap.getInt("durationMilli");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "fromAngle")) {
+            fromAngle = (float) propMap.getDouble("fromAngle");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "toAngle")) {
+            toAngle = (float) propMap.getDouble("toAngle");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "easing")) {
+            easing = Easing.EasingOption.valueOf(propMap.getString("easing"));
+        }
+        chart.spin(durationMilli, fromAngle, toAngle, easing);
+    }
+
+    @ReactProp(name = "minOffset")
+    public void setMinOffSet(PieChart chart, float offset) {
+        chart.setMinOffset(offset);
+    }
 }

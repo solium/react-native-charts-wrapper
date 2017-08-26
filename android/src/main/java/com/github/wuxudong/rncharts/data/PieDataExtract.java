@@ -1,5 +1,8 @@
 package com.github.wuxudong.rncharts.data;
 
+import android.graphics.Typeface;
+
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -18,6 +21,11 @@ import java.util.ArrayList;
  */
 
 public class PieDataExtract extends DataExtract<PieData, PieEntry> {
+
+    public PieDataExtract(ReactApplicationContext reactContext) {
+        super(reactContext);
+    }
+
     @Override
     PieData createData() {
         return new PieData();
@@ -32,7 +40,7 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
     void dataSetConfig(IDataSet<PieEntry> dataSet, ReadableMap config) {
         PieDataSet pieDataSet = (PieDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(pieDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(pieDataSet, config, getReactContext());
 
         // PieDataSet only config
         if (BridgeUtils.validate(config, ReadableType.Number, "sliceSpace")) {
@@ -41,11 +49,11 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
         if (BridgeUtils.validate(config, ReadableType.Number, "selectionShift")) {
             pieDataSet.setSelectionShift((float) config.getDouble("selectionShift"));
         }
-        if (BridgeUtils.validate(config, ReadableType.Boolean, "xValueOuterEnabled")) {
-            pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        if (BridgeUtils.validate(config, ReadableType.String, "xValuePosition")) {
+            pieDataSet.setXValuePosition(PieDataSet.ValuePosition.valueOf(config.getString("xValuePosition").toUpperCase()));
         }
-        if (BridgeUtils.validate(config, ReadableType.Boolean, "yValueOuterEnabled")) {
-            pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        if (BridgeUtils.validate(config, ReadableType.String, "yValuePosition")) {
+            pieDataSet.setYValuePosition(PieDataSet.ValuePosition.valueOf(config.getString("yValuePosition").toUpperCase()));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart1OffsetPercentage")) {
             pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLinePart1OffsetPercentage"));

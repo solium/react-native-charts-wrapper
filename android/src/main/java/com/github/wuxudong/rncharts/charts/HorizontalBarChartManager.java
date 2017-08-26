@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.view.View;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.BarChart;
@@ -12,6 +13,10 @@ import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class HorizontalBarChartManager extends BarChartManager {
+
+    public HorizontalBarChartManager(ReactApplicationContext reactContext) {
+        super(reactContext);
+    }
 
     @Override
     public String getName() {
