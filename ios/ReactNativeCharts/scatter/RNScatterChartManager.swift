@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import React
 
 @objc(RNScatterChartManager)
 class RNScatterChartManager: RCTViewManager {

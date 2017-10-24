@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import React
 
 @objc(RNCombinedChartManager)
 open class RNCombinedChartManager: RCTViewManager {

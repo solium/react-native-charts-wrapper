@@ -29,7 +29,31 @@ class PieDataExtract : DataExtract {
         if config["selectionShift"].number != nil {
             pieDataSet.selectionShift = CGFloat(config["selectionShift"].numberValue)
         }
-        
+
+        if let xValuePosition = config["xValuePosition"].string {
+            pieDataSet.xValuePosition = BridgeUtils.parseValuePositionPieDataSet(xValuePosition)
+        }
+
+        if let yValuePosition = config["yValuePosition"].string {
+            pieDataSet.yValuePosition = BridgeUtils.parseValuePositionPieDataSet(yValuePosition)
+        }
+
+        if let valueLinePart1OffsetPercentage = config["valueLinePart1OffsetPercentage"].number {
+            pieDataSet.valueLinePart1OffsetPercentage = CGFloat(valueLinePart1OffsetPercentage) / 100
+        }
+
+        if let valueLinePart1Length = config["valueLinePart1Length"].number {
+            pieDataSet.valueLinePart1Length = CGFloat(valueLinePart1Length)
+        }
+
+        if let valueLinePart2Length = config["valueLinePart2Length"].number {
+            pieDataSet.valueLinePart2Length = CGFloat(valueLinePart2Length)
+        }
+
+        if let valueLineVariableLength = config["valueLineVariableLength"].bool {
+            pieDataSet.valueLineVariableLength = valueLineVariableLength
+        }
+
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {

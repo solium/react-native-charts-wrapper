@@ -6,6 +6,7 @@ import Foundation
 
 import SwiftyJSON
 import Charts
+import React
 
 class BarDataExtract : DataExtract {
     override open func createData() -> ChartData {

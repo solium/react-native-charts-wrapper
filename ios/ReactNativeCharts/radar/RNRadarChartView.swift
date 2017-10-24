@@ -41,4 +41,8 @@ class RNRadarChartView: RNYAxisChartViewBase {
     func setRotationEnabled(_ enabled: Bool) {
         _chart.rotationEnabled = enabled
     }
+
+    func setRotationAngle(_ rotationAngle: NSNumber) {
+        _chart.rotationAngle = CGFloat(rotationAngle)
+    }
 }

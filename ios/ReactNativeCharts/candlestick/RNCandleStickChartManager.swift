@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import React
 
 @objc(RNCandleStickChartManager)
 open class RNCandleStickChartManager: RCTViewManager {

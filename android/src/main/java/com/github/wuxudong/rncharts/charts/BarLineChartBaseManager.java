@@ -1,5 +1,6 @@
 package com.github.wuxudong.rncharts.charts;
 
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.annotations.ReactProp;
@@ -10,6 +11,10 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
+
+    public BarLineChartBaseManager(ReactApplicationContext reactContext) {
+        super(reactContext);
+    }
 
     @Override
     public void setYAxis(Chart chart, ReadableMap propMap) {
