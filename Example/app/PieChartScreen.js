@@ -4,8 +4,10 @@ import {
   StyleSheet,
   Text,
   View,
-  processColor
+  processColor,
 } from 'react-native';
+
+import {StackNavigator, SafeAreaView} from 'react-navigation';
 
 import {PieChart} from 'react-native-charts-wrapper';
 
@@ -39,6 +41,7 @@ class PieChartScreen extends React.Component {
           }
         }],
       },
+      highlights: [{x:2}],
       description: {
         text: 'This is Pie chart description',
         textSize: 15,
@@ -55,15 +58,15 @@ class PieChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
+
+    console.log(event.nativeEvent)
   }
 
   render() {
     return (
-
-      <View style={{flex: 1}}>
-
-        <View style={{height:80}}>
-          <Text> selected entry</Text>
+      <SafeAreaView style={{flex: 1}}>
+        <View>
+          <Text>selected:</Text>
           <Text> {this.state.selectedEntry}</Text>
         </View>
 
@@ -75,15 +78,16 @@ class PieChartScreen extends React.Component {
             chartDescription={this.state.description}
             data={this.state.data}
             legend={this.state.legend}
+            highlights={this.state.highlights}
 
-            entryLabelColor = {processColor('black')}
-            entryLabelTextSize = {20}                 
+            entryLabelColor={processColor('black')}
+            entryLabelTextSize={20}
+            drawEntryLabels={true}
 
-
-            rotationEnabled={false}
-            drawSliceText={true}
+            rotationEnabled={true}
+            rotationAngle={45}
             usePercentValues={false}
-            centerText={'Pie center text!'}
+            styledCenterText={{text:'Pie center text!', color: processColor('pink'), size: 20}}
             centerTextRadiusPercent={100}
             holeRadius={40}
             holeColor={processColor('#f0f0f0')}
@@ -91,10 +95,10 @@ class PieChartScreen extends React.Component {
             transparentCircleColor={processColor('#f0f0f088')}
             maxAngle={350}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
-
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -109,3 +113,4 @@ const styles = StyleSheet.create({
 });
 
 export default PieChartScreen;
+

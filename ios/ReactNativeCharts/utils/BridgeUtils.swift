@@ -155,7 +155,7 @@ class BridgeUtils {
     }
     
     static func parseEasingOption(_ option: String) -> ChartEasingOption {
-        let iosEnumString = androidEnumToIOSEnum(option)
+        let iosEnumString = String(option.first!).lowercased() + String(option.dropFirst())
         
         switch iosEnumString {
         case "linear":
@@ -281,5 +281,22 @@ class BridgeUtils {
             i += 1
         }
         return nil;
+    }
+    
+      static func parseLimitlineLabelPosition(_ position: String) -> ChartLimitLine.LabelPosition {
+      let iosEnumString = androidEnumToIOSEnum(position)
+//      NSLog("this label position %@", iosEnumString)
+      switch iosEnumString {
+      case "rightBottom":
+        return .rightBottom
+      case "leftBottom":
+        return .leftBottom
+      case "rightTop":
+        return .rightTop
+      case "leftTop":
+        return .leftTop
+      default:
+        return .rightTop
+      }
     }
 }

@@ -11,4 +11,5 @@ Pods
 Podfile.lock
 Example.xcworkspace
 node_modules
-.iml
+*.iml
+xcuserdata

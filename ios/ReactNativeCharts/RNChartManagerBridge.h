@@ -11,6 +11,7 @@
 
 #define EXPORT_CHART_BASE_PROPERTIES \
 RCT_EXPORT_VIEW_PROPERTY(data, NSDictionary) \
+RCT_EXPORT_VIEW_PROPERTY(highlights, NSArray) \
 RCT_EXPORT_VIEW_PROPERTY(legend, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(chartBackgroundColor, NSInteger) \
 RCT_EXPORT_VIEW_PROPERTY(chartDescription, NSDictionary) \
@@ -21,7 +22,8 @@ RCT_EXPORT_VIEW_PROPERTY(dragDecelerationFrictionCoef, NSNumber) \
 RCT_EXPORT_VIEW_PROPERTY(animation, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(xAxis, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(marker, NSDictionary) \
-RCT_EXPORT_VIEW_PROPERTY(onSelect, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onSelect, RCTBubblingEventBlock) \
+RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
 
 
 
