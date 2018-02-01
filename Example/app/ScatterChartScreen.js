@@ -83,8 +83,6 @@ class ScatterChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
-
-    console.log(event.nativeEvent)
   }
 
   render() {
@@ -104,7 +102,6 @@ class ScatterChartScreen extends React.Component {
             legend={this.state.legend}
             marker={this.state.marker}
             onSelect={this.handleSelect.bind(this)}
-            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

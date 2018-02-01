@@ -12,7 +12,6 @@ import com.github.mikephil.charting.data.RadarEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.RadarDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
-import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 
 public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
@@ -29,7 +28,6 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
     protected RadarChart createViewInstance(ThemedReactContext reactContext) {
         RadarChart radarChart =  new RadarChart(reactContext);
         radarChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(radarChart));
-        radarChart.setOnChartGestureListener(new RNOnChartGestureListener(radarChart));
         return radarChart;
     }
 
@@ -52,24 +50,9 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
         chart.setSkipWebLineCount(count);
     }
 
-    @ReactProp(name = "drawWeb")
-    public void setDrawWeb(RadarChart chart, boolean enabled) {
-        chart.setDrawWeb(enabled);
-    }
-
-    @ReactProp(name = "minOffset")
-    public void setMinOffset(RadarChart chart, float minOffset) {
-        chart.setMinOffset(minOffset);
-    }
-
     @ReactProp(name = "rotationEnabled")
     public void setRotationEnabled(RadarChart chart, boolean enabled) {
         chart.setRotationEnabled(enabled);
-    }
-
-    @ReactProp(name = "rotationAngle")
-    public void setRotationAngle(RadarChart chart, float angle) {
-        chart.setRotationAngle(angle);
     }
 
 

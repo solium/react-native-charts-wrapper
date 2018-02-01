@@ -11,7 +11,6 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.wuxudong.rncharts.data.BarDataExtract;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
-import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 
 public class HorizontalBarChartManager extends BarChartManager {
 
@@ -25,10 +24,9 @@ public class HorizontalBarChartManager extends BarChartManager {
     }
 
     @Override
-    protected BarChart createViewInstance(ThemedReactContext reactContext) {
+    protected View createViewInstance(ThemedReactContext reactContext) {
         HorizontalBarChart horizontalBarChart = new HorizontalBarChart(reactContext);
         horizontalBarChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(horizontalBarChart));
-        horizontalBarChart.setOnChartGestureListener(new RNOnChartGestureListener(horizontalBarChart));
         return horizontalBarChart;
     }
 }

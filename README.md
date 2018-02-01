@@ -6,10 +6,10 @@ This library is React Native wrapper of popular Native charting library [MPAndro
 
 Inspired by [react-native-mp-android-chart](https://github.com/mskec/react-native-mp-android-chart) and [react-native-ios-charts](https://github.com/Jpadilla1/react-native-ios-charts)
 
-React Native Charts Wrapper is built on MPAndroidChart(v3.0.2) & Charts(v3.0.3), support both android & ios.
+React Native Charts Wrapper is built on MPAndroidChart(v3.0.1) & Charts(v3.0.1), support both android & ios.
 
 
-### ANDROID 
+### ANDROID  [Download Example Apk](https://goo.gl/5sg2JQ)
 ![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/Android%20ScreenShot.png)
 
 ### IOS
@@ -109,12 +109,9 @@ protected List<ReactPackage> getPackages() {
 
 ### IOS
 
-
-Your may be interested in this article [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6)
-
 #### 1. Add Source Files
 
- create a group under your project *top level* and add files under directory node_modules/react-native-charts-wrapper/ios/ReactNativeCharts
+ add directory node_modules/react-native-charts-wrapper/ReactNativeCharts under your project *top level*. (In Xcode: File -> Add files to "App Name")
 
 #### 2. Add Bridge File
 
@@ -145,7 +142,7 @@ add a `Podfile` to your ios directory with the following content. Then run `pod 
 
   target 'MyApp' do
     pod 'SwiftyJSON', '3.1.4'
-    pod 'Charts', '3.0.3'
+    pod 'Charts', '3.0.1'
   end
   
   post_install do |installer|
@@ -188,10 +185,13 @@ Android and IOS have different convention:
 
 
 
+
+
+
+
 ## Data Format
 
 - Complete Form
-
 
 		data : {
 			...
@@ -199,12 +199,12 @@ Android and IOS have different convention:
 				{
 					values: [
 						{x: 5, y: 90},
-						{x: 10, y: 130},
-						{x: 50, y: 2000, marker: "eat more"},
-						{x: 80, y: 9000, marker: "eat less"}
-					]
-				},
-				...
+				        {x: 10, y: 130},
+				        {x: 50, y: 2000, marker: "eat more"},
+				        {x: 80, y: 9000, marker: "eat less"}
+			    	]
+			    },
+			    ...
 			]
 		}
 
@@ -230,21 +230,10 @@ check Example->TimeSeriesLineChart for details
 
 ## Callback
 
-**Support value selection callBack.**
+Support value selection callBack. 
 
 you can do whatever you want, even pop your own modal, or jump to another page.
 
-**Support gesture callBack.**
-
-check Example->MultipleChart for details.
-
-## Direct Function Call
-
-Support direct function call.
-
-You can use `chart.moveViewToX(...)` or other functions directly.
-
-check Example->MovingWindowChart for details.
 
 
 ## Custom Marker Content 
@@ -261,6 +250,11 @@ check Example->TimeSeriesLineChart for details.
 
   The font is a little different in android & ios, I don't know how to configure it in js in the same way.
   
+2. pie's entryLabelTextSize & entryLabelColor
+
+  MpAndroidChart & Charts are dealing pie's entryLabel in a different way, currently the settings of pie's entryLabelTextSize & entryLabelColor can only work in android.
+  
+
 **size of chart**
 
 you can set chart to fixed width & height, or flex:1

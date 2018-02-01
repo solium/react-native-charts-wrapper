@@ -98,8 +98,6 @@ class AxisLineChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
-
-    console.log(event.nativeEvent)
   }
 
   render() {
@@ -116,12 +114,11 @@ class AxisLineChartScreen extends React.Component {
           <LineChart
             style={styles.chart}
             data={this.state.data}
-            chartDescription={{text: ''}}
+            description={{text: ''}}
             xAxis={this.state.xAxis}
             yAxis={this.state.yAxis}
             legend={{enabled: false}}
             onSelect={this.handleSelect.bind(this)}
-            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
       </View>

@@ -82,8 +82,6 @@ class RadarChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
-
-    console.log(event.nativeEvent)
   }
 
   render() {
@@ -100,13 +98,10 @@ class RadarChartScreen extends React.Component {
             style={styles.chart}
             data={this.state.data}
             xAxis={this.state.xAxis}
-            yAxis={{drawLabels:true}}
-            chartDescription={{text: ''}}
+            description={{text: ''}}
             legend={this.state.legend}
-            drawWeb={true}
             skipWebLineCount={1}
             onSelect={this.handleSelect.bind(this)}
-            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

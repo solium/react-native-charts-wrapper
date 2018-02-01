@@ -16,8 +16,6 @@ import React
 open class RNChartViewBase: UIView, ChartViewDelegate {
     open var onSelect:RCTBubblingEventBlock?
     
-    open var onChange:RCTBubblingEventBlock?
-    
     override open func reactSetFrame(_ frame: CGRect)
     {
         super.reactSetFrame(frame);
@@ -286,7 +284,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                 if limitLineConfig["limit"].double != nil {
                     
                     let limitLine = ChartLimitLine(limit: limitLineConfig["limit"].doubleValue)
-                  
+                    
                     if limitLineConfig["label"].string != nil {
                         limitLine.label = limitLineConfig["label"].stringValue
                     }
@@ -294,30 +292,11 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     if (limitLineConfig["lineColor"].int != nil) {
                         limitLine.lineColor = RCTConvert.uiColor(limitLineConfig["lineColor"].intValue)
                     }
-                  
-                    if (limitLineConfig["valueTextColor"].int != nil) {
-                        limitLine.valueTextColor = RCTConvert.uiColor(limitLineConfig["valueTextColor"].intValue)
-                    }
-                  
-                    if (limitLineConfig["valueFont"].int != nil) {
-                        limitLine.valueFont = NSUIFont.systemFont(ofSize: CGFloat(limitLineConfig["valueFont"].intValue))
-                    }
                     
                     if limitLineConfig["lineWidth"].number != nil {
                         limitLine.lineWidth = CGFloat(limitLineConfig["lineWidth"].numberValue)
                     }
-                  
-                    if limitLineConfig["labelPosition"].string != nil {
-                        limitLine.labelPosition = BridgeUtils.parseLimitlineLabelPosition(limitLineConfig["labelPosition"].stringValue);
-                    }
-                  
-                    if limitLineConfig["lineDashPhase"].float != nil {
-                        limitLine.lineDashPhase = CGFloat(limitLineConfig["lineDashPhase"].floatValue);
-                    }
-                    if limitLineConfig["lineDashLengths"].arrayObject != nil {
-                        limitLine.lineDashLengths = limitLineConfig["lineDashLengths"].arrayObject as? [CGFloat];
-                    }
-
+                    
                     axis.addLimitLine(limitLine)
                 }
             }
@@ -353,24 +332,20 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         
         // formatting
         // TODO: other formatting options
-        let valueFormatter = config["valueFormatter"];
-        if valueFormatter.array != nil {
-            axis.valueFormatter = IndexAxisValueFormatter(values: valueFormatter.arrayValue.map({ $0.stringValue }))
-        } else if valueFormatter.string != nil {
-            if "largeValue" == valueFormatter.stringValue {
+        if config["valueFormatter"].array != nil {
+            axis.valueFormatter = IndexAxisValueFormatter(values: config["valueFormatter"].arrayValue.map({ $0.stringValue }))
+        } else if config["valueFormatter"].string != nil {
+            if "largeValue" == config["valueFormatter"].stringValue {
                 axis.valueFormatter = LargeValueFormatter();
-            } else if "percent" == valueFormatter.stringValue {
+            } else if "percent" == config["valueFormatter"].stringValue {
                 let percentFormatter = NumberFormatter()
                 percentFormatter.numberStyle = .percent
                 
                 axis.valueFormatter = DefaultAxisValueFormatter(formatter: percentFormatter);
-            } else if "date" == valueFormatter.stringValue {
-              let valueFormatterPattern = config["valueFormatterPattern"].stringValue;
-              axis.valueFormatter = ChartDateFormatter(pattern: valueFormatterPattern);
             } else {
               let customFormatter = NumberFormatter()
-              customFormatter.positiveFormat = valueFormatter.stringValue
-              customFormatter.negativeFormat = valueFormatter.stringValue
+              customFormatter.positiveFormat = config["valueFormatter"].stringValue
+              customFormatter.negativeFormat = config["valueFormatter"].stringValue
               
               axis.valueFormatter = DefaultAxisValueFormatter(formatter: customFormatter);
           }
@@ -413,34 +388,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         
     }
     
-    func setHighlights(_ config: NSArray) {        
-        var highlights : [Highlight] = []
-        for object in config {
-            if let dict = object as? NSDictionary {
-                let json = BridgeUtils.toJson(dict)
-                
-                if json["x"].double != nil {
-                    let dataSetIndex = json["dataSetIndex"].int != nil ? json["dataSetIndex"].intValue : 0
-                    let y = json["y"].double != nil ? json["y"].doubleValue : 0
-                    
-                    var highlight : Highlight
-                    if json["stackIndex"].int != nil {
-                        highlight = Highlight(x: json["x"].doubleValue, dataSetIndex: dataSetIndex, stackIndex: json["stackIndex"].intValue)
-                    } else {
-                        highlight = Highlight(x: json["x"].doubleValue, y: y, dataSetIndex: dataSetIndex)
-                    }
-                    
-                    if json["dataIndex"].int != nil {
-                        highlight.dataIndex = json["dataIndex"].intValue
-                    }
-                    
-                    highlights.append(highlight)
-                }
-            }
-        }
-        chart.highlightValues(highlights)
-    }
-    
+        
     @objc public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
         if self.onSelect == nil {
@@ -461,45 +409,9 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
     }
     
     @objc public func chartScaled(_ chartView: ChartViewBase, scaleX: CoreGraphics.CGFloat, scaleY: CoreGraphics.CGFloat) {
-        sendEvent("chartScaled")
     }
     
     @objc public func chartTranslated(_ chartView: ChartViewBase, dX: CoreGraphics.CGFloat, dY: CoreGraphics.CGFloat) {
-        sendEvent("chartTranslated")
-    }
-    
-    func sendEvent(_ action:String) {
-        var dict = [AnyHashable: Any]()
-        
-        dict["action"] = action
-        if chart is BarLineChartViewBase {
-            let viewPortHandler = chart.viewPortHandler
-            let barLineChart = chart as! BarLineChartViewBase
-            
-            dict["scaleX"] = barLineChart.scaleX
-            dict["scaleY"] = barLineChart.scaleY
-            
-            if let handler = viewPortHandler {
-                let center = barLineChart.valueForTouchPoint(point: handler.contentCenter, axis: YAxis.AxisDependency.left)
-                dict["centerX"] = center.x
-                dict["centerY"] = center.y
-                
-                let leftBottom = barLineChart.valueForTouchPoint(point: CGPoint(x: handler.contentLeft, y: handler.contentBottom), axis: YAxis.AxisDependency.left)
-                
-                let rightTop = barLineChart.valueForTouchPoint(point: CGPoint(x: handler.contentRight, y: handler.contentTop), axis: YAxis.AxisDependency.left)
-                
-                dict["left"] = leftBottom.x
-                dict["bottom"] = leftBottom.y
-                dict["right"] = rightTop.x
-                dict["top"] = rightTop.y
-            }
-        }
-        
-        if self.onChange == nil {
-            return
-        } else {
-            self.onChange!(dict)
-        }
     }
     
     

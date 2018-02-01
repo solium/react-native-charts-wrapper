@@ -3,24 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
   "dependencies": {
-    "immutability-helper": "2.4.0",
-    "lodash": "4.17.4",
-    "react": "16.1.1",
-    "react-native": "0.50.3",
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.43.4",
     "react-native-charts-wrapper": "file:../",
-    "react-navigation": "^1.0.0-beta.19"
+    "lodash": "^4.12.0",
+    "immutability-helper": "2.2.0"
   },
   "devDependencies": {
-    "babel-jest": "21.0.2",
-    "babel-preset-react-native": "4.0.0",
-    "jest": "21.1.0",
-    "react-test-renderer": "15.6.1"
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "19.0.2",
+    "react-test-renderer": "15.4.2"
   },
   "jest": {
     "preset": "react-native"

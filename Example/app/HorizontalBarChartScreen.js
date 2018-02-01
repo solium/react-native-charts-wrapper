@@ -24,7 +24,7 @@ class HorizontalBarChartScreen extends React.Component {
         yEntrySpace: 5,
         formToTextSpace: 5,
         wordWrapEnabled: true,
-        maxSizePercent: 0.5,
+        maxSizePercent: 0.5
       },
       data: {
         dataSets: [{
@@ -46,7 +46,6 @@ class HorizontalBarChartScreen extends React.Component {
         granularity: 1,
         labelCount: 10,
       },
-      yAxis: {left:{axisMinimum: 0}}
     };
   }
 
@@ -57,8 +56,6 @@ class HorizontalBarChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
-
-    console.log(event.nativeEvent)
   }
 
 
@@ -77,7 +74,6 @@ class HorizontalBarChartScreen extends React.Component {
             style={styles.chart}
             data={this.state.data}
             xAxis={this.state.xAxis}
-            yAxis={this.state.yAxis}
             animation={{durationX: 2000}}
             legend={this.state.legend}
             gridBackgroundColor={processColor('#ffffff')}
@@ -85,7 +81,6 @@ class HorizontalBarChartScreen extends React.Component {
             drawValueAboveBar={true}
             drawHighlightArrow={true}
             onSelect={this.handleSelect.bind(this)}
-            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
       </View>

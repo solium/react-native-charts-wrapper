@@ -3,7 +3,6 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  Button,
   View,
   processColor
 } from 'react-native';
@@ -96,11 +95,8 @@ class CandleStickChartScreen extends React.Component {
         enabled: true,
         markerColor: processColor('#2c3e50'),
         textColor: processColor('white'),
-      },
-      zoomXValue : 0
+      }
     };
-
-    this.x = 0;
   }
 
   componentDidMount() {
@@ -108,8 +104,8 @@ class CandleStickChartScreen extends React.Component {
       update(this.state, {
           xAxis: {
             $set: {
-              drawLabels: true,
-              drawGridLines: true,
+              drawLabels: false,
+              drawGridLines: false,
               position: 'BOTTOM',
 
               limitLines: _.times(this.state.data.dataSets[0].values.length / 5, (i) => {
@@ -136,12 +132,8 @@ class CandleStickChartScreen extends React.Component {
               },
               right: {
                 enabled: false
-              },
-
+              }
             }
-          },
-          zoomXValue: {
-            $set: 99999
           }
         }
       ));
@@ -154,8 +146,6 @@ class CandleStickChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
-
-    console.log(event.nativeEvent)
   }
 
   render() {
@@ -173,17 +163,14 @@ class CandleStickChartScreen extends React.Component {
             style={styles.chart}
             data={this.state.data}
             marker={this.state.marker}
-            chartDescription={{text: 'CandleStick'}}
+            description={{text: ''}}
             legend={this.state.legend}
             xAxis={this.state.xAxis}
             yAxis={this.state.yAxis}
             maxVisibleValueCount={16}
             autoScaleMinMaxEnabled={true}
-            // zoom={{scaleX: 2, scaleY: 1, xValue:  400000, yValue: 1}}
-            zoom={{scaleX: 15.41, scaleY: 1, xValue:  40, yValue: 916, axisDependency: 'LEFT'}}
+            zoom={{scaleX: 2, scaleY: 1, xValue:  400000, yValue: 1}}
             onSelect={this.handleSelect.bind(this)}
-            ref="chart"
-            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

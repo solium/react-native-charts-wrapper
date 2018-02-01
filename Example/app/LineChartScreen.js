@@ -35,10 +35,10 @@ class LineChartScreen extends React.Component {
       },
       marker: {
         enabled: true,
-        digits: 2,
         backgroundTint: processColor('teal'),
 	      markerColor: processColor('#F0C0FF8C'),
         textColor: processColor('white'),
+
       }
     };
   }
@@ -49,7 +49,7 @@ class LineChartScreen extends React.Component {
         data: {
           $set: {
             dataSets: [{
-              values: [{y: 0.88}, {y: 0.77}, {y: 105}, {y: 115}],
+              values: [{y: 100}, {y: 110}, {y: 105}, {y: 115}],
               label: 'Company X',
               config: {
                 lineWidth: 2,
@@ -108,8 +108,6 @@ class LineChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
-
-    console.log(event.nativeEvent)
   }
 
   render() {
@@ -125,7 +123,7 @@ class LineChartScreen extends React.Component {
           <LineChart
             style={styles.chart}
             data={this.state.data}
-            chartDescription={{text: ''}}
+            description={{text: ''}}
             legend={this.state.legend}
             marker={this.state.marker}
             xAxis={this.state.xAxis}
@@ -147,7 +145,6 @@ class LineChartScreen extends React.Component {
 
             keepPositionOnRotation={false}
             onSelect={this.handleSelect.bind(this)}
-            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

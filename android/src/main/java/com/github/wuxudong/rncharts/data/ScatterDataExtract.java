@@ -14,7 +14,6 @@ import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by xudong on 02/03/2017.
@@ -49,7 +48,7 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
             scatterDataSet.setScatterShapeSize((float) config.getDouble("scatterShapeSize"));
         }
         if (BridgeUtils.validate(config, ReadableType.String, "scatterShape")) {
-            scatterDataSet.setScatterShape(ScatterChart.ScatterShape.valueOf(config.getString("scatterShape").toUpperCase(Locale.ENGLISH)));
+            scatterDataSet.setScatterShape(ScatterChart.ScatterShape.valueOf(config.getString("scatterShape").toUpperCase()));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "scatterShapeHoleColor")) {
             scatterDataSet.setScatterShapeHoleColor(config.getInt("scatterShapeHoleColor"));

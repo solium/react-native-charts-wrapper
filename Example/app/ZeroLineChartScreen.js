@@ -54,8 +54,6 @@ class ZeroLineChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
-
-    console.log(event.nativeEvent)
   }
 
   render() {
@@ -74,10 +72,9 @@ class ZeroLineChartScreen extends React.Component {
             data={this.state.data}
             xAxis={this.state.xAxis}
             yAxis={this.state.yAxis}
-            chartDescription={{text: ''}}
+            description={{text: ''}}
             legend={{enabled: false}}
             onSelect={this.handleSelect.bind(this)}
-            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

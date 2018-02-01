@@ -5,7 +5,7 @@
 import Charts
 import SwiftyJSON
 
-class RNBubbleChartView: RNBarLineChartViewBase {
+open class RNBubbleChartView: RNChartViewBase {
     let _chart: BubbleChartView
     let _dataExtract : BubbleDataExtract
 

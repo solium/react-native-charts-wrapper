@@ -15,7 +15,6 @@ import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by xudong on 02/03/2017.
@@ -65,13 +64,13 @@ public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
             candleDataSet.setDecreasingColor(config.getInt("decreasingColor"));
         }
         if (BridgeUtils.validate(config, ReadableType.String, "decreasingPaintStyle")) {
-            candleDataSet.setDecreasingPaintStyle(Paint.Style.valueOf(config.getString("decreasingPaintStyle").toUpperCase(Locale.ENGLISH)));
+            candleDataSet.setDecreasingPaintStyle(Paint.Style.valueOf(config.getString("decreasingPaintStyle").toUpperCase()));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "increasingColor")) {
             candleDataSet.setIncreasingColor(config.getInt("increasingColor"));
         }
         if (BridgeUtils.validate(config, ReadableType.String, "increasingPaintStyle")) {
-            candleDataSet.setIncreasingPaintStyle(Paint.Style.valueOf(config.getString("increasingPaintStyle").toUpperCase(Locale.ENGLISH)));
+            candleDataSet.setIncreasingPaintStyle(Paint.Style.valueOf(config.getString("increasingPaintStyle").toUpperCase()));
         }
     }
 
