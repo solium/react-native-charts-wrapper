@@ -10,10 +10,10 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.charts.PieRadarChartBase;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.PieDataExtract;
+import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
@@ -29,9 +29,10 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     }
 
     @Override
-    protected View createViewInstance(ThemedReactContext reactContext) {
+    protected PieChart createViewInstance(ThemedReactContext reactContext) {
         PieChart pieChart =  new PieChart(reactContext);
         pieChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(pieChart));
+        pieChart.setOnChartGestureListener(new RNOnChartGestureListener(pieChart));
         return pieChart;
     }
 
@@ -41,7 +42,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     }
 
     @ReactProp(name = "drawEntryLabels")
-    public void setDrawSliceText(PieChart chart, boolean enabled) {
+    public void setDrawEntryLabels(PieChart chart, boolean enabled) {
         chart.setDrawEntryLabels(enabled);
     }
 
@@ -54,6 +55,23 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     @ReactProp(name = "centerText")
     public void setCenterText(PieChart chart, String text) {
         chart.setCenterText(text);
+    }
+
+    @ReactProp(name = "styledCenterText")
+    public void setStyledCenterText(PieChart chart, ReadableMap propMap) {
+        if (BridgeUtils.validate(propMap, ReadableType.String, "text")) {
+            chart.setCenterText(propMap.getString("text"));
+        } else {
+            chart.setCenterText("");
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "color")) {
+            chart.setCenterTextColor(propMap.getInt("color"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "size")) {
+            chart.setCenterTextSize((float) propMap.getDouble("size"));
+        }
     }
 
     @ReactProp(name = "centerTextRadiusPercent")
@@ -101,9 +119,6 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
         chart.setRotationEnabled(enabled);
     }
 
-    @ReactProp(name = "rotationAngle")
-    public void setRotationAngle(PieChart chart, float angle) { chart.setRotationAngle(angle); }
-
     @ReactProp(name = "spin")
     public void setSpinAngleDuraction(PieChart chart, ReadableMap propMap) {
         int durationMilli = 0;
@@ -124,6 +139,12 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
         }
         chart.spin(durationMilli, fromAngle, toAngle, easing);
     }
+    
+    @ReactProp(name = "rotationAngle")
+    public void setRotationAngle(PieChart chart, float angle) {
+        chart.setRotationAngle(angle);
+    }
+
 
     @ReactProp(name = "minOffset")
     public void setMinOffSet(PieChart chart, float offset) {

@@ -27,6 +27,12 @@ export default class Combined extends Component {
         granularity: 1
       },
 
+      marker: {
+        enabled: true,
+        markerColor: processColor('#F0C0FF8C'),
+        textColor: processColor('white'),
+        markerFontSize: 14,
+      },
 
       data: {
         barData: {
@@ -70,13 +76,16 @@ export default class Combined extends Component {
           dataSets: [{
             values: [{
               size: 2.3,
-              y: 180
+              y: 180,
+              marker: "marker 1"
             }, {
               size: 1.4,
-              y: 150
+              y: 150,
+              marker: "marker 2"
             }, {
               size: 2.0,
-              y: 106
+              y: 106,
+              marker: "marker 3"
             }, {
               size: 5.0,
               y: 100
@@ -97,17 +106,20 @@ export default class Combined extends Component {
               shadowH: 20,
               shadowL: 5,
               open: 15,
-              close: 10
+              close: 10,
+              marker: "marker 1"
             }, {
               shadowH: 30,
               shadowL: 10,
               open: 25,
-              close: 15
+              close: 15,
+              marker: "marker 1"
             }, {
               shadowH: 10,
               shadowL: 5,
               open: 15,
-              close: 10
+              close: 10,
+              marker: "marker 1"
             }, {
               shadowH: 50,
               shadowL: 5,
@@ -166,6 +178,17 @@ export default class Combined extends Component {
 
   }
 
+  componentDidMount() {
+    // in this example, there are line, bar, candle, scatter, bubble in this combined chart.
+    // according to MpAndroidChart, the default data sequence is line, bar, scatter, candle, bubble.
+    // so 4 should be used as dataIndex to highlight bubble data.
+
+    // if there is only bar, bubble in this combined chart.
+    // 1 should be used as dataIndex to highlight bubble data.
+
+    this.setState({...this.state, highlights: [{x: 1, y:150, dataIndex: 4}, {x: 2, y:106, dataIndex: 4}]})
+  }
+
 
   static displayName = 'Combined';
 
@@ -176,24 +199,31 @@ export default class Combined extends Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
+
+    console.log(event.nativeEvent)
   }
 
   render() {
     return (
       <View style={{flex: 1}}>
 
-        <View style={{height:80}}>
+        <View style={{height: 80}}>
           <Text> selected entry</Text>
           <Text> {this.state.selectedEntry}</Text>
         </View>
 
 
-        <CombinedChart
-          data={this.state.data}
-          xAxis={this.state.xAxis}
-          onSelect={this.handleSelect.bind(this)}
-          style={styles.container}/>
+        <View style={styles.container}>
+          <CombinedChart
+            data={this.state.data}
+            xAxis={this.state.xAxis}
+            onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
+            marker={this.state.marker}
+            highlights={this.state.highlights}
+            style={styles.container}/>
 
+        </View>
       </View>
     );
   }

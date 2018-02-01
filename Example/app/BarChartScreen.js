@@ -39,6 +39,7 @@ class BarChartScreen extends React.Component {
           }
         }],
       },
+      highlights: [{x: 3}, {x: 6}],
       xAxis: {
         valueFormatter: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
         granularityEnabled: true,
@@ -54,6 +55,8 @@ class BarChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
+
+    console.log(event.nativeEvent)
   }
 
 
@@ -79,6 +82,8 @@ class BarChartScreen extends React.Component {
             drawValueAboveBar={true}
             drawHighlightArrow={true}
             onSelect={this.handleSelect.bind(this)}
+            highlights={this.state.highlights}
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
       </View>
