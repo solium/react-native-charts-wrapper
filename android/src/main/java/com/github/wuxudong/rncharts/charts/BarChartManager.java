@@ -3,14 +3,21 @@ package com.github.wuxudong.rncharts.charts;
 import android.view.View;
 
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.wuxudong.rncharts.data.BarDataExtract;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
+
+import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry> {
 
@@ -49,5 +56,16 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
     @ReactProp(name = "highlightFullBarEnabled")
     public void setHighlightFullBarEnabled(BarChart chart, boolean enabled) {
         chart.setHighlightFullBarEnabled(enabled);
+    }
+
+    @Nullable
+    @Override
+    public Map<String, Integer> getCommandsMap() {
+        return super.getCommandsMap();
+    }
+
+    @Override
+    public void receiveCommand(BarChart root, int commandId, @Nullable ReadableArray args) {
+        super.receiveCommand(root, commandId, args);
     }
 }

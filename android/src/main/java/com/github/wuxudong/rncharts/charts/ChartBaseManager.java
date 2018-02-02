@@ -3,7 +3,6 @@ package com.github.wuxudong.rncharts.charts;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.view.View;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
@@ -28,16 +27,12 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.wuxudong.rncharts.data.DataExtract;
-import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-
-import javax.annotation.Nullable;
 
 public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager<T> {
 
@@ -47,6 +42,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     protected static final int CENTER_VIEW_TO = 4;
     protected static final int CENTER_VIEW_TO_ANIMATED = 6;
     protected static final int FIT_SCREEN = 7;
+
+    public static final int ANIMATE = 8;
+    public static final int RESET_HIGHLIGHT = 9;
 
     private ReactApplicationContext m_reactContext;
 
