@@ -1,11 +1,11 @@
 package com.github.wuxudong.rncharts.charts;
 
-
-import android.view.View;
-
+import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.animation.Easing;
@@ -16,6 +16,10 @@ import com.github.wuxudong.rncharts.data.PieDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
+
+import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
@@ -148,5 +152,27 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     @ReactProp(name = "minOffset")
     public void setMinOffSet(PieChart chart, float offset) {
         chart.setMinOffset(offset);
+    }
+
+    @Nullable
+    @Override
+    public Map<String, Integer> getCommandsMap() {
+        return MapBuilder.of("animate", ANIMATE, "resetHighlight", RESET_HIGHLIGHT);
+    }
+
+    @Override
+    public void receiveCommand(PieChart root, int commandId, @Nullable ReadableArray args) {
+        Assertions.assertNotNull(root);
+        Assertions.assertNotNull(args);
+        switch (commandId) {
+            case ANIMATE: {
+                root.spin(args.getInt(0), (float) args.getDouble(1), (float) args.getDouble(2), Easing.EasingOption.valueOf(args.getString(3)));
+                return;
+            }
+            case RESET_HIGHLIGHT: {
+                root.highlightValue(null, false);
+                return;
+            }
+        }
     }
 }

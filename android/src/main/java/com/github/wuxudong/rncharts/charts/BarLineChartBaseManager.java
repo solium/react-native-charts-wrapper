@@ -8,6 +8,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.annotations.ReactProp;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
@@ -203,7 +204,9 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "moveViewTo", MOVE_VIEW_TO,
                 "moveViewToX", MOVE_VIEW_TO_X,
                 "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
-                "fitScreen", FIT_SCREEN);
+                "fitScreen", FIT_SCREEN,
+                "animate", ANIMATE,
+                "resetHighlight", RESET_HIGHLIGHT);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -233,9 +236,14 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             case CENTER_VIEW_TO_ANIMATED:
                 root.centerViewToAnimated((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT, args.getInt(3));
                 return;
-
             case FIT_SCREEN:
                 root.fitScreen();
+                return;
+            case ANIMATE:
+                root.animateXY(args.getInt(0), args.getInt(1), Easing.EasingOption.valueOf(args.getString(2)), Easing.EasingOption.valueOf(args.getString(3)));
+                return;
+            case RESET_HIGHLIGHT:
+                root.highlightValue(null, false);
                 return;
         }
 
