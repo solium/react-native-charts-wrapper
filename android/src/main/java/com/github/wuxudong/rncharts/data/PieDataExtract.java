@@ -67,6 +67,9 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
         if (BridgeUtils.validate(config, ReadableType.Boolean, "valueLineVariableLength")) {
             pieDataSet.setValueLineVariableLength(config.getBoolean("valueLineVariableLength"));
         }
+        if (BridgeUtils.validate(config, ReadableType.Number, "highLightColor")) {
+            pieDataSet.setHighLightColor(config.getInt("highLightColor"));
+        }
     }
 
     @Override

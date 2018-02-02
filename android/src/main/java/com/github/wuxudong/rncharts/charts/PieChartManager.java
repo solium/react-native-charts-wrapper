@@ -154,6 +154,11 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
         chart.setMinOffset(offset);
     }
 
+    @ReactProp(name = "useCustomHighLightColor")
+    public void setUseCustomHighLightColor(PieChart chart, boolean enabled) {
+        chart.setUseCustomHighLightColor(enabled);
+    }
+
     @Nullable
     @Override
     public Map<String, Integer> getCommandsMap() {
@@ -175,4 +180,5 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
             }
         }
     }
+
 }
