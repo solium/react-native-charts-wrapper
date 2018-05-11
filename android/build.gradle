@@ -31,6 +31,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.facebook.react:react-native:0.55.+'
+    compile 'com.facebook.react:react-native:0.52.+'
     compile 'com.github.solium:MPAndroidChart:v3.0.3-solium'
 }
