@@ -31,10 +31,13 @@ public class RNOnChartValueSelectedListener implements OnChartValueSelectedListe
             Chart chart = mWeakChart.get();
 
             ReactContext reactContext = (ReactContext) chart.getContext();
+
+            final WritableMap event = EntryToWritableMapUtils.convertEntryToWritableMap(entry);
+            event.putInt("stackIndex", h.getStackIndex());
             reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                     chart.getId(),
                     "topSelect",
-                    EntryToWritableMapUtils.convertEntryToWritableMap(entry));
+                    event);
         }
     }
 
