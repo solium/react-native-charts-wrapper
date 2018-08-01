@@ -6,6 +6,7 @@ import UIKit
 import React
 
 @objc(RNPieChartManager)
+@objcMembers
 open class RNPieChartManager: RCTViewManager {
   override open func view() -> UIView! {
     let ins = RNPieChartView()

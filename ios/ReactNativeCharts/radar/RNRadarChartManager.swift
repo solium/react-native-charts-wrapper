@@ -6,6 +6,7 @@ import UIKit
 import React
 
 @objc(RNRadarChartManager)
+@objcMembers
 open class RNRadarChartManager: RCTViewManager {
   override open func view() -> UIView! {
     let ins = RNRadarChartView()

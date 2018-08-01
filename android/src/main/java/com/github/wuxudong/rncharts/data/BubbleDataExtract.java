@@ -17,7 +17,6 @@ import java.util.ArrayList;
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
 
     public BubbleDataExtract(ReactApplicationContext reactContext) {
@@ -45,6 +44,9 @@ public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
         // BubbleDataSet only config
         if (BridgeUtils.validate(config, ReadableType.Number, "highlightCircleWidth")) {
             bubbleDataSet.setHighlightCircleWidth((float) config.getDouble("highlightCircleWidth"));
+        }
+        if (BridgeUtils.validate(config, ReadableType.Boolean, "normalizeSizeEnabled")) {
+            bubbleDataSet.setNormalizeSizeEnabled(config.getBoolean("normalizeSizeEnabled"));
         }
     }
 

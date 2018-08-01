@@ -6,7 +6,7 @@ This library is React Native wrapper of popular Native charting library [MPAndro
 
 Inspired by [react-native-mp-android-chart](https://github.com/mskec/react-native-mp-android-chart) and [react-native-ios-charts](https://github.com/Jpadilla1/react-native-ios-charts)
 
-React Native Charts Wrapper is built on MPAndroidChart(v3.0.2) & Charts(v3.0.3), support both android & ios.
+React Native Charts Wrapper is built on MPAndroidChart(v3.0.3) & Charts(v3.1.1), support both android & iOS.
 
 
 ### ANDROID 
@@ -14,7 +14,6 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.0.2) & Charts(v3.0.3),
 
 ### IOS
 ![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/IOS%20ScreenShot.png)
-
 
 ## Supported Chart Type
 
@@ -106,11 +105,28 @@ protected List<ReactPackage> getPackages() {
 }
 ```
 
+*   **Additional setting**
+   
+Add following code to MainApplication.java for RN >= 0.54, check [#229](https://github.com/wuxudong/react-native-charts-wrapper/issues/229) and the code in android example.
+
+```java
+ReadableNativeArray.setUseNativeAccessor(true);
+ReadableNativeMap.setUseNativeAccessor(true);
+```
+
+
+
 
 ### IOS
 
+Version 0.4.3 use Charts(v3.1.1) & swift 4.1
 
-Your may be interested in this article [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6)
+Version 0.4.2 use Charts(v3.0.3) & swift 3
+
+
+Your may be interested in this article [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6), but some configure in it is outdated, like missing `#import "React/RCTFont.h"` in Bridge Header.
+
+
 
 #### 1. Add Source Files
 
@@ -128,6 +144,7 @@ Your may be interested in this article [Detail Guide provided by contributor](ht
 		#import "React/RCTBridgeModule.h"
 		#import "React/RCTEventDispatcher.h"
 		#import "React/RCTEventEmitter.h"
+		#import "React/RCTFont.h"
 
 
 You should make sure set this file in your target -> Build Settings -> Swift Compiler - General -> Object-C Bridging Header 
@@ -144,14 +161,14 @@ add a `Podfile` to your ios directory with the following content. Then run `pod 
   use_frameworks!
 
   target 'MyApp' do
-    pod 'SwiftyJSON', '3.1.4'
-    pod 'Charts', '3.0.3'
+    pod 'SwiftyJSON', '3.1.4'      # 4.0.0
+    pod 'Charts', '3.0.3'          # 3.1.1
   end
   
   post_install do |installer|
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
-        config.build_settings['SWIFT_VERSION'] = '3.0'
+        config.build_settings['SWIFT_VERSION'] = '3.0'    # 4.0
       end
     end
   end

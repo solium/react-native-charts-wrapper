@@ -74,13 +74,13 @@ class RNPieChartView: RNChartViewBase {
                 color = UIColor.black
             }
 
-            let fontSize = json["size"].number != nil ? CGFloat(json["size"].numberValue) : CGFloat(12)
+            let fontSize = json["size"].float != nil ? CGFloat(json["size"].floatValue) : CGFloat(12)
 
             attrString = NSMutableAttributedString(string: json["text"].stringValue)
             attrString?.setAttributes([
-                NSForegroundColorAttributeName: color!,
-                NSFontAttributeName: NSUIFont.systemFont(ofSize: fontSize),
-                NSParagraphStyleAttributeName: paragraphStyle
+                NSAttributedStringKey.foregroundColor: color!,
+                NSAttributedStringKey.font: NSUIFont.systemFont(ofSize: fontSize),
+                NSAttributedStringKey.paragraphStyle: paragraphStyle
                 ], range: NSMakeRange(0, attrString!.length))
         }
 
@@ -89,12 +89,12 @@ class RNPieChartView: RNChartViewBase {
     }
 
     func setCenterTextRadiusPercent(_ radiusPercent: NSNumber) {
-        chart.centerTextRadiusPercent = CGFloat(radiusPercent) / 100.0
+        chart.centerTextRadiusPercent = CGFloat(truncating: radiusPercent) / 100.0
     }
 
 
     func setHoleRadius(_ percent: NSNumber) {
-        chart.holeRadiusPercent = CGFloat(percent) / 100.0
+        chart.holeRadiusPercent = CGFloat(truncating: percent) / 100.0
     }
 
 
@@ -104,7 +104,7 @@ class RNPieChartView: RNChartViewBase {
 
 
     func setTransparentCircleRadius(_ percent: NSNumber) {
-        chart.transparentCircleRadiusPercent = CGFloat(percent) / 100.0
+        chart.transparentCircleRadiusPercent = CGFloat(truncating: percent) / 100.0
     }
 
     func setTransparentCircleColor(_ color: Int) {
@@ -116,7 +116,7 @@ class RNPieChartView: RNChartViewBase {
     }
 
     func setEntryLabelTextSize(_ size: NSNumber) {
-        chart.entryLabelFont = chart.entryLabelFont?.withSize(CGFloat(size))
+        chart.entryLabelFont = chart.entryLabelFont?.withSize(CGFloat(truncating: size))
     }
     
     func setDrawEntryLabels(_ enabled: Bool) {
@@ -124,11 +124,11 @@ class RNPieChartView: RNChartViewBase {
     }
 
     func setMaxAngle(_ maxAngle: NSNumber) {
-        chart.maxAngle = CGFloat(maxAngle)
+        chart.maxAngle = CGFloat(truncating: maxAngle)
     }
 
     func setMinOffset(_ minOffset: NSNumber) {
-        chart.minOffset = CGFloat(minOffset)
+        chart.minOffset = CGFloat(truncating: minOffset)
     }
 
     func setRotationEnabled(_ enabled: Bool) {

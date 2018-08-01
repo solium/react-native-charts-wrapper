@@ -10,6 +10,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
+import com.facebook.react.views.text.ReactFontManager;
 import com.github.mikephil.charting.animation.Easing.EasingOption;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -82,9 +83,29 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
 
         // Customizing
-        if (BridgeUtils.validate(propMap, ReadableType.String, "position")) {
-            legend.setPosition(LegendPosition.valueOf(propMap.getString("position").toUpperCase(Locale.ENGLISH)));
+        if (BridgeUtils.validate(propMap, ReadableType.String, "horizontalAlignment")) {
+            legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.valueOf(propMap.getString("horizontalAlignment").toUpperCase(Locale.ENGLISH)));
         }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "verticalAlignment")) {
+            legend.setVerticalAlignment(Legend.LegendVerticalAlignment.valueOf(propMap.getString("verticalAlignment").toUpperCase(Locale.ENGLISH)));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "orientation")) {
+            legend.setOrientation(Legend.LegendOrientation.valueOf(propMap.getString("orientation").toUpperCase(Locale.ENGLISH)));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Boolean, "drawInside")) {
+            legend.setDrawInside(propMap.getBoolean("drawInside"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "direction")) {
+            legend.setDirection(Legend.LegendDirection.valueOf(propMap.getString("direction").toUpperCase(Locale.ENGLISH)));
+        }
+
+
+
+
         if (BridgeUtils.validate(propMap, ReadableType.String, "form")) {
             legend.setForm(LegendForm.valueOf(propMap.getString("form").toUpperCase(Locale.ENGLISH)));
         }
@@ -301,6 +322,30 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         if (BridgeUtils.validate(propMap, ReadableType.Number, "textSize")) {
             axis.setTextSize((float) propMap.getDouble("textSize"));
         }
+        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
+            String fontFamily = propMap.getString("fontFamily");
+            boolean italic = false;
+            boolean bold = false;
+            int style = Typeface.NORMAL;
+            if (BridgeUtils.validate(propMap, ReadableType.String, "fontStyle")) {
+                italic = "italic".equals(propMap.getString("fontStyle"));
+            }
+            if (BridgeUtils.validate(propMap, ReadableType.String, "fontWeight")) {
+                bold = "bold".equals(propMap.getString("fontWeight"));
+            }
+
+            if (italic && bold) {
+                style = Typeface.BOLD_ITALIC;
+            } else if (italic) {
+                style = Typeface.ITALIC;
+            } else if (bold) {
+                style = Typeface.BOLD;
+            }
+
+            axis.setTypeface(ReactFontManager.getInstance().getTypeface(fontFamily,
+                    style,
+                    chart.getContext().getAssets()));
+        }
         if (BridgeUtils.validate(propMap, ReadableType.Number, "gridColor")) {
             axis.setGridColor(propMap.getInt("gridColor"));
         }
@@ -358,7 +403,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "lineWidth")) {
                         limitLine.setLineWidth((float) limitLineMap.getDouble("lineWidth"));
                     }
-                    
+
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "valueTextColor")) {
                         limitLine.setTextColor(limitLineMap.getInt("valueTextColor"));
                     }
@@ -370,11 +415,11 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     }
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "lineDashPhase")
                             && BridgeUtils.validate(limitLineMap, ReadableType.Array, "lineDashLengths")) {
-                        if (limitLineMap.getArray("lineDashLengths").size()>1) {
+                        if (limitLineMap.getArray("lineDashLengths").size() > 1) {
                             float lineDashPhase = (float) limitLineMap.getDouble("lineDashPhase");
-                            float lineLength =  limitLineMap.getArray("lineDashLengths").getInt(0);
+                            float lineLength = limitLineMap.getArray("lineDashLengths").getInt(0);
                             float spaceLength = limitLineMap.getArray("lineDashLengths").getInt(1);
-                            limitLine.enableDashedLine(lineLength,spaceLength, lineDashPhase);
+                            limitLine.enableDashedLine(lineLength, spaceLength, lineDashPhase);
                         }
                     }
 

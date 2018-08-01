@@ -66,25 +66,25 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         
         let x = json["x"]
         if x["min"].double != nil {
-            barLineChart.setVisibleXRangeMinimum(x["min"].doubleValue)
+            barLineChart.xAxis.axisMinimum = x["min"].doubleValue
         }
         if x["max"].double != nil {
-            barLineChart.setVisibleXRangeMaximum(x["max"].doubleValue)
+            barLineChart.xAxis.axisMaximum = x["max"].doubleValue
         }
         
         let y = json["y"]
         if y["left"]["min"].double != nil {
-            barLineChart.setVisibleYRangeMinimum(y["left"]["min"].doubleValue, axis: YAxis.AxisDependency.left)
+            barLineChart.leftAxis.axisMinimum = y["left"]["min"].doubleValue
         }
         if y["left"]["max"].double != nil {
-            barLineChart.setVisibleYRangeMaximum(y["left"]["max"].doubleValue, axis: YAxis.AxisDependency.left)
+            barLineChart.leftAxis.axisMaximum = y["left"]["max"].doubleValue
         }
         
         if y["right"]["min"].double != nil {
-            barLineChart.setVisibleYRangeMinimum(y["right"]["min"].doubleValue, axis: YAxis.AxisDependency.right)
+            barLineChart.rightAxis.axisMinimum = y["right"]["min"].doubleValue
         }
         if y["right"]["max"].double != nil {
-            barLineChart.setVisibleYRangeMaximum(y["right"]["max"].doubleValue, axis: YAxis.AxisDependency.right)
+            barLineChart.rightAxis.axisMaximum = y["right"]["max"].doubleValue
         }
     }
     
@@ -125,15 +125,15 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     func setZoom(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
 
-        if json["scaleX"].number != nil && json["scaleY"].number != nil && json["xValue"].double != nil && json["yValue"].double != nil {
+        if json["scaleX"].float != nil && json["scaleY"].float != nil && json["xValue"].double != nil && json["yValue"].double != nil {
             var axisDependency = YAxis.AxisDependency.left
 
             if json["axisDependency"].string != nil && json["axisDependency"].stringValue == "RIGHT" {
                 axisDependency = YAxis.AxisDependency.right
             }
             
-            barLineChart.zoom(scaleX: CGFloat(json["scaleX"].numberValue),
-                    scaleY: CGFloat(json["scaleY"].numberValue),
+            barLineChart.zoom(scaleX: CGFloat(json["scaleX"].floatValue),
+                    scaleY: CGFloat(json["scaleY"].floatValue),
                     xValue: json["xValue"].doubleValue,
                     yValue: json["yValue"].doubleValue,
                     axis: axisDependency)
@@ -144,11 +144,21 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         let json = BridgeUtils.toJson(config)
 
         let left = json["left"].double != nil ? CGFloat(json["left"].doubleValue) : 0
-        let top = json["top"].double != nil ? CGFloat(json["left"].doubleValue) : 0
+        let top = json["top"].double != nil ? CGFloat(json["top"].doubleValue) : 0
         let right = json["right"].double != nil ? CGFloat(json["right"].doubleValue) : 0
         let bottom = json["bottom"].double != nil ? CGFloat(json["bottom"].doubleValue) : 0
 
         barLineChart.setViewPortOffsets(left: left, top: top, right: right, bottom: bottom)
     }
 
+    func setExtraOffsets(_ config: NSDictionary) {
+        let json = BridgeUtils.toJson(config)
+    
+        let left = json["left"].double != nil ? CGFloat(json["left"].doubleValue) : 0
+        let top = json["top"].double != nil ? CGFloat(json["top"].doubleValue) : 0
+        let right = json["right"].double != nil ? CGFloat(json["right"].doubleValue) : 0
+        let bottom = json["bottom"].double != nil ? CGFloat(json["bottom"].doubleValue) : 0
+    
+        barLineChart.setExtraOffsets(left: left, top: top, right: right, bottom: bottom)
+    }
 }

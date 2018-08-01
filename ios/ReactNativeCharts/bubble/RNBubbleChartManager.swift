@@ -6,6 +6,7 @@ import UIKit
 import React
 
 @objc(RNBubbleChartManager)
+@objcMembers
 open class RNBubbleChartManager: RCTViewManager, RNBarLineChartBaseManager {
   var _bridge: RCTBridge? {get{return self.bridge}}
   
