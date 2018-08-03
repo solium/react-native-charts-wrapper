@@ -54,6 +54,10 @@ class PieDataExtract : DataExtract {
             pieDataSet.valueLineVariableLength = valueLineVariableLength
         }
 
+        if let highlightColor = config["highLightColor"].number {
+            pieDataSet.highlightColor = RCTConvert.uiColor(highlightColor)
+        }
+
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {

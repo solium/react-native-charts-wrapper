@@ -139,10 +139,6 @@ class RNPieChartView: RNChartViewBase {
         chart.rotationAngle = CGFloat(rotationAngle)
     }
 
-    func setMinOffset(_ minOffset: NSNumber) {
-        chart.minOffset = CGFloat(minOffset)
-    }
-
     func setSpin(_ spin: NSDictionary) {
         let config = BridgeUtils.toJson(spin)
         var duration: Double = 0.0;

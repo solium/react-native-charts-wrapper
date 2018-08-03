@@ -11,7 +11,7 @@ import Charts
 import SwiftyJSON
 
 class EntryToDictionaryUtils: NSObject {
-  static func entryToDictionary(_ entry: ChartDataEntry) -> [AnyHashable: Any]{
+    static func entryToDictionary(_ entry: ChartDataEntry, highlight: Highlight?) -> [AnyHashable: Any]{
     var dict = [AnyHashable: Any]()
     
     if entry.data != nil {
@@ -22,6 +22,10 @@ class EntryToDictionaryUtils: NSObject {
         let barEntry = entry as! BarChartDataEntry;
 
         dict["x"] = barEntry.x
+
+        if let highlightVal = highlight, highlightVal.stackIndex >= 0 {
+            dict["stackIndex"] = highlightVal.stackIndex
+        }
         
         if barEntry.yValues != nil {
             dict["yValues"] = barEntry.yValues

@@ -63,6 +63,9 @@ class ChartDataSetConfigUtils: NSObject {
                 dataSet.valueFormatter = DefaultValueFormatter(formatter: customFormatter);
             }
 
+        } else if valueFormatter.array != nil {
+            let chartDisplayValues = valueFormatter.arrayValue.map { $0.stringValue}
+            dataSet.valueFormatter = DisplayStringFormatter(chartDataSet: dataSet, chartDisplayValues: chartDisplayValues)
         }
 
         if config["axisDependency"].string != nil {

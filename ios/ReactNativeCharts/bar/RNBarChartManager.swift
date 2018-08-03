@@ -18,6 +18,14 @@ open class RNBarChartManager: RCTViewManager, RNBarLineChartBaseManager {
   override open static func requiresMainQueueSetup() -> Bool {
     return true;
   }
+
+    func animate(_ reactTag: NSNumber, durationMillisX: NSNumber, durationMillisY: NSNumber, easingX: NSString, easingY: NSString) {
+        (self as RNBarLineChartBaseManager)._animate(reactTag, durationMillisX: durationMillisX, durationMillisY: durationMillisY, easingX: easingX, easingY: easingY)
+    }
+
+    func resetHighlight(_ reactTag: NSNumber) {
+        (self as RNBarLineChartBaseManager)._resetHighlight(reactTag)
+    }
   
   func moveViewToX(_ reactTag: NSNumber, xValue: NSNumber) {
     (self as RNBarLineChartBaseManager)._moveViewToX(reactTag, xValue: xValue)
