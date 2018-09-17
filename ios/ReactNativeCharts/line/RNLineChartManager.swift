@@ -6,6 +6,7 @@ import UIKit
 import React
 
 @objc(RNLineChartManager)
+@objcMembers
 open class RNLineChartManager: RCTViewManager, RNBarLineChartBaseManager {
   var _bridge: RCTBridge? {get{return self.bridge}}
   

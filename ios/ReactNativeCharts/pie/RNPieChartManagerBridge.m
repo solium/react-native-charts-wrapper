@@ -24,7 +24,10 @@ RCT_EXPORT_VIEW_PROPERTY(maxAngle, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(minOffset, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(rotationEnabled, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(rotationAngle, NSNumber)
-RCT_EXPORT_VIEW_PROPERTY(minOffset, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(spin, NSDictionary)
+
+RCT_EXTERN_METHOD(animate:(nonnull NSNumber *)node durationMillisX:(nonnull NSNumber *)durationMillisX fromAngle:(nonnull NSNumber *)fromAngle toAngle:(nonnull NSNumber *)toAngle easing:(nonnull NSString *)easing)
+
+RCT_EXTERN_METHOD(resetHighlight:(nonnull NSNumber *)node)
 
 @end

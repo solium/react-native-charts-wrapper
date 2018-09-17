@@ -12,8 +12,8 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.wuxudong.rncharts.data.BarDataExtract;
 import com.github.wuxudong.rncharts.data.DataExtract;
-import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
+import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 import java.util.Map;
 

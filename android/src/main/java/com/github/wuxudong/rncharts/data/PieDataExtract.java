@@ -15,11 +15,11 @@ import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class PieDataExtract extends DataExtract<PieData, PieEntry> {
 
     public PieDataExtract(ReactApplicationContext reactContext) {

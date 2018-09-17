@@ -1,6 +1,5 @@
 package com.github.wuxudong.rncharts.listener;
 
-import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
@@ -15,7 +14,6 @@ import java.lang.ref.WeakReference;
 /**
  * Created by xudong on 07/03/2017.
  */
-
 public class RNOnChartValueSelectedListener implements OnChartValueSelectedListener {
 
     private WeakReference<Chart> mWeakChart;

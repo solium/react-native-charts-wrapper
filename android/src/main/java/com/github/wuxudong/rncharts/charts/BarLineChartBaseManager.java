@@ -13,7 +13,6 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.util.Map;
@@ -91,22 +90,22 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             if (BridgeUtils.validate(y, ReadableType.Map, "left")) {
                 ReadableMap left = y.getMap("left");
                 if (BridgeUtils.validate(left, ReadableType.Number, "min")) {
-                    chart.setVisibleYRangeMinimum((float) y.getDouble("min"), YAxis.AxisDependency.LEFT);
+                    chart.setVisibleYRangeMinimum((float) left.getDouble("min"), YAxis.AxisDependency.LEFT);
                 }
 
                 if (BridgeUtils.validate(left, ReadableType.Number, "max")) {
-                    chart.setVisibleYRangeMaximum((float) y.getDouble("max"), YAxis.AxisDependency.LEFT);
+                    chart.setVisibleYRangeMaximum((float) left.getDouble("max"), YAxis.AxisDependency.LEFT);
                 }
             }
 
             if (BridgeUtils.validate(y, ReadableType.Map, "right")) {
                 ReadableMap right = y.getMap("right");
                 if (BridgeUtils.validate(right, ReadableType.Number, "min")) {
-                    chart.setVisibleYRangeMinimum((float) y.getDouble("min"), YAxis.AxisDependency.RIGHT);
+                    chart.setVisibleYRangeMinimum((float) right.getDouble("min"), YAxis.AxisDependency.RIGHT);
                 }
 
                 if (BridgeUtils.validate(right, ReadableType.Number, "max")) {
-                    chart.setVisibleYRangeMaximum((float) y.getDouble("max"), YAxis.AxisDependency.RIGHT);
+                    chart.setVisibleYRangeMaximum((float) right.getDouble("max"), YAxis.AxisDependency.RIGHT);
                 }
             }
         }
@@ -193,6 +192,25 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             bottom = propMap.getDouble("bottom");
         }
         chart.setViewPortOffsets((float) left, (float) top, (float) right, (float) bottom);
+    }
+
+    @ReactProp(name = "extraOffsets")
+    public void setExtraOffsets(BarLineChartBase chart, ReadableMap propMap) {
+        double left = 0, top = 0, right = 0, bottom = 0;
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "left")) {
+            left = propMap.getDouble("left");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "top")) {
+            top = propMap.getDouble("top");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "right")) {
+            right = propMap.getDouble("right");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "bottom")) {
+            bottom = propMap.getDouble("bottom");
+        }
+        chart.setExtraOffsets((float) left, (float) top, (float) right, (float) bottom);
     }
 
     @Nullable

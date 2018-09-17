@@ -24,6 +24,9 @@ RCT_EXPORT_VIEW_PROPERTY(pinchZoom, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(doubleTapToZoomEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(zoom, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(viewPortOffsets, NSDictionary) \
+RCT_EXPORT_VIEW_PROPERTY(extraOffsets, NSDictionary) \
+RCT_EXTERN_METHOD(animate:(nonnull NSNumber *)node durationMillisX:(nonnull NSNumber *)durationMillisX durationMillisY:(nonnull NSNumber *)durationMillisY easingX:(nonnull NSString *)easingX easingY:(nonnull NSString *)easingY) \
+RCT_EXTERN_METHOD(resetHighlight:(nonnull NSNumber *)node) \
 RCT_EXTERN_METHOD(moveViewToX:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue) \
 RCT_EXTERN_METHOD(moveViewTo:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue yValue:(nonnull NSNumber *)yValue axisDependency:(nonnull NSString *)axisDependency) \
 RCT_EXTERN_METHOD(moveViewToAnimated:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue yValue:(nonnull NSNumber *)yValue axisDependency:(nonnull NSString *)axisDependency duration:(nonnull NSNumber *)duration) \

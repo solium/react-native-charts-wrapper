@@ -11,6 +11,21 @@ protocol RNBarLineChartBaseManager {
 }
 
 extension RNBarLineChartBaseManager {
+
+    func _animate(_ reactTag: NSNumber, durationMillisX: NSNumber, durationMillisY: NSNumber, easingX: NSString, easingY: NSString) {
+        _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
+            let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
+            (view.chart as! BarLineChartViewBase).animate(xAxisDuration: durationMillisX.doubleValue / 1000, yAxisDuration: durationMillisY.doubleValue / 1000, easingOptionX: BridgeUtils.parseEasingOption(easingX as String), easingOptionY: BridgeUtils.parseEasingOption(easingY as String))
+        }
+    }
+
+    func _resetHighlight(_ reactTag: NSNumber) {
+        _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
+            let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
+            (view.chart as! BarLineChartViewBase).highlightValue(nil)
+        }
+    }
+
   func _moveViewToX(_ reactTag: NSNumber, xValue: NSNumber) {
     _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
       let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
